@@ -31,6 +31,7 @@ body {
   left: 0;
   width: 100%;
   z-index: 1000;
+  /* padding-right: 50px; */
 }
 .navbar {
   width: 100%;
@@ -42,12 +43,14 @@ body {
   justify-content: space-between;
   padding: 0 30px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  /* margin-right: 50px; */
 }
 
 .nav-left {
   display: flex;
   align-items: center;
   gap: 10px;
+  /* margin-left: 50px; */
 }
 
 .nav-logo {
@@ -141,6 +144,70 @@ body {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
   outline: none;
 }
+/* ESTOS SON LOS ESTILOS PARA LOS SELECT DE SELECT2 */
+/* CONTENEDOR */
+.select2-container {
+  width: 100% !important;
+  font-family: "Poppins", sans-serif;
+}
+
+/* CAJA PRINCIPAL */
+.select2-selection {
+  height: 45px !important;
+  border-radius: 10px !important;
+  border: 1px solid #ccc !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 10px !important;
+  transition: 0.3s ease;
+}
+
+/* TEXTO */
+.select2-selection__rendered {
+  color: #333 !important;
+  font-size: 14px;
+}
+
+/* FLECHA */
+.select2-selection__arrow {
+  height: 100% !important;
+}
+
+/* EFECTO HOVER */
+.select2-selection:hover {
+  border-color: #007bff !important;
+}
+
+/* CUANDO ESTÁ ACTIVO */
+.select2-container--open .select2-selection {
+  border-color: #007bff !important;
+  box-shadow: 0 0 5px rgba(0,123,255,0.5);
+}
+
+/* DROPDOWN */
+.select2-dropdown {
+  border-radius: 10px !important;
+  border: 1px solid #ccc !important;
+}
+
+/* OPCIONES */
+.select2-results__option {
+  padding: 10px !important;
+  font-size: 14px;
+}
+
+/* OPCIÓN HOVER */
+.select2-results__option--highlighted {
+  background-color: #007bff !important;
+  color: white !important;
+}
+
+.select2-search__field {
+  padding: 8px !important;
+  border-radius: 8px !important;
+  border: 1px solid #ccc !important;
+}
+/* FIN DE LOS ESTILOS ASIGNADOS PARA SELECT 2 */
 .row {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

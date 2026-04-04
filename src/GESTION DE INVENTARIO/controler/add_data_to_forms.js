@@ -6,8 +6,8 @@ async function cargarCombos() {
     const data = await res.json();
     console.log("Datos para combos:", data);
     // CAMPOS EXACTOS SEGÚN TU API
-    llenarSelect("ID_area", data.area, "Area", "ID_area");
-    llenarSelect("ID_sede", data.sede, "Sede", "ID_sede");
+    llenarSelectEspeciales("ID_area", data.area, "Area", "ID_area");
+    llenarSelectEspeciales("ID_sede", data.sede, "Sede", "ID_sede");
     llenarSelectEspeciales(
       "ID_marca",
       data.marca,
@@ -22,12 +22,7 @@ async function cargarCombos() {
       "ID_item",
       "ID_categoria",
     );
-    llenarSelect(
-      "ID_categoria",
-       data.categoria, 
-       "categoria",
-        "ID_categoria"
-      );
+    llenarSelectEspeciales("ID_categoria", data.categoria, "categoria", "ID_categoria");
     llenarSelectEspeciales(
       "ID_modelo",
       data.modelo,
@@ -35,31 +30,21 @@ async function cargarCombos() {
       "ID_modelo",
       "ID_categoria",
     );
-    llenarSelect(
-      "ID_medida", 
-      data.medida, 
-      "Medida", 
-      "ID_medida"
-    );
-    llenarSelect(
-      "ID_Estado",
-       data.estadoObj,
-      "estado",
-       "ID_Estado"
-      );
-    llenarSelect(
+    llenarSelectEspeciales("ID_medida", data.medida, "Medida", "ID_medida");
+    llenarSelectEspeciales("ID_Estado", data.estadoObj, "estado", "ID_Estado");
+    llenarSelectEspeciales(
       "ID_Disponibilidad",
       data.disponibilidad,
       "Disponibilidad",
       "ID_DisponibilidadObj",
     );
-    llenarSelect(
+    llenarSelectEspeciales(
       "ID_Condicion",
       data.condicion,
       "Condicion",
       "ID_CondicionObj",
     );
-    llenarSelect("ID_seccion", data.seccion, "Seccion", "ID_seccion");
+    llenarSelectEspeciales("ID_seccion", data.seccion, "Seccion", "ID_seccion");
   } catch (error) {
     console.error("Error al cargar combos:", error);
   }
@@ -78,19 +63,24 @@ function llenarSelect(idSelect, lista, campo, id) {
     return;
   }
 
-  // LIMPIAR SELECT
+  // Limpiar
   select.innerHTML = `<option value="">SELECCIONAR</option>`;
 
-  // Insertar las opciones
+  // Llenar opciones
   lista.forEach((item) => {
     const opt = document.createElement("option");
-    let pos = 0;
     opt.value = item[id];
     opt.textContent = item[campo];
     select.appendChild(opt);
   });
-}
 
+  // 🔥 Inicializar Select2 UNA SOLA VEZ
+  $(`#${idSelect}`).select2({
+    placeholder: "Buscar...",
+    allowClear: true,
+    width: "100%",
+  });
+}
 
 //FUNCION LLENAR SELECT CAMPOS ESPECIALES
 function llenarSelectEspeciales(idSelect, lista, campo, id, categoria) {
@@ -101,18 +91,26 @@ function llenarSelectEspeciales(idSelect, lista, campo, id, categoria) {
     return;
   }
 
-  // LIMPIAR SELECT
+  // Limpiar
   select.innerHTML = `<option value="">SELECCIONAR</option>`;
 
-  // Insertar las opciones
+  // Llenar opciones
   lista.forEach((item) => {
     const opt = document.createElement("option");
-    let pos = 0;
     opt.value = item[id];
     opt.textContent = item[campo];
+
     if (item[categoria]) {
       opt.setAttribute("data-categoria", item[categoria]);
     }
+
     select.appendChild(opt);
+  });
+
+  // 🔥 Inicializar Select2 UNA SOLA VEZ
+  $(`#${idSelect}`).select2({
+    placeholder: "Buscar...",
+    allowClear: true,
+    width: "100%",
   });
 }

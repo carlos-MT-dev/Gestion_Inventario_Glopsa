@@ -18,24 +18,42 @@ async function cargarProductos(data) {
 console.log("esta es la data que llega a la busqueda mutiple",data)
 
   let sql = `
-   SELECT 
+ SELECT
   o.ID_objeto,
+  o.ID_area,
+  o.ID_sede,
+  o.ID_item,
+  o.ID_categoria,
+  o.ID_marca,
+  o.ID_modelo,
+  o.ID_medida,
+  o.ID_Estado,
+  o.ID_DisponibilidadObj,
+  o.ID_CondicionObj,
+  o.ID_seccion,
+
   m.modelo AS Modelo,
   o.fecha_registro,
   o.Fecha_compra,
   o.Codigo,
+
   s.Seccion AS Seccion,
   a.Area AS Area,
   ma.Marca AS Marca,
+
   it.Item AS Item,
+
   o.Descripcion,
   o.Stock,
+
   med.Medida AS Medida,
   e.Estado AS Estado,
   d.Disponibilidad AS Disponibilidad,
   c.Condicion AS Condicion,
   se.Sede AS Sede,
   ca.Categoria AS Categoria
+
+
 FROM objeto o
 LEFT JOIN item it ON o.ID_item = it.ID_item
 LEFT JOIN modelo m ON o.ID_modelo = m.ID_modelo
@@ -48,6 +66,8 @@ LEFT JOIN disponibilidad d ON o.ID_DisponibilidadObj = d.ID_DisponibilidadObj
 LEFT JOIN condicion c ON o.ID_CondicionObj = c.ID_CondicionObj
 LEFT JOIN sede se ON o.ID_sede = se.ID_sede
 LEFT JOIN categoria ca ON o.ID_categoria = ca.ID_categoria
+
+
 `;
 
   const condiciones = [];
@@ -75,7 +95,7 @@ LEFT JOIN categoria ca ON o.ID_categoria = ca.ID_categoria
     valores.push(data.marca);
   }
   if (data.objeto) {
-    condiciones.push("o.ID_objeto = ?");
+    condiciones.push("o.ID_Item = ?");
     valores.push(data.objeto);
   }
   if (data.categoria) {
@@ -110,6 +130,9 @@ LEFT JOIN categoria ca ON o.ID_categoria = ca.ID_categoria
   sql += " ORDER BY o.ID_objeto DESC";
 
   const [rows] = await conn.query(sql, valores);
+  console.log(condiciones);
+  console.log(valores);
+  console.log(rows);
   return rows;
 }
 
