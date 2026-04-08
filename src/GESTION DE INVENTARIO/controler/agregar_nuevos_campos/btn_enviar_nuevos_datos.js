@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("registro_nuevos_campos").style.display =
         "none";
         alert(`Se agregó correctamente el elemento ${nombreElemento}`);
+        location.reload();
       } else {
         alert("No se pudo registrar el elemento");
       }

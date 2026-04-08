@@ -51,7 +51,9 @@ LEFT JOIN condicion c ON o.ID_CondicionObj = c.ID_CondicionObj
 LEFT JOIN sede se ON o.ID_sede = se.ID_sede
 LEFT JOIN categoria ca ON o.ID_categoria = ca.ID_categoria
 
-ORDER BY o.ID_objeto DESC;
+ORDER BY o.ID_objeto DESC
+LIMIT 100
+;
   `;
   const [rows] = await conn.query(sql);
   return rows;

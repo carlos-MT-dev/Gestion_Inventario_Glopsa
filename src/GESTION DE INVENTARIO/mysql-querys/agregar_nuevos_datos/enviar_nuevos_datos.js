@@ -34,8 +34,6 @@ async function insertMarca(data) {
 }
 
 
-
-
 async function insertModelo(data) {
   const sql = `INSERT INTO modelo (modelo, ID_categoria) VALUES (?,?)`;
 
