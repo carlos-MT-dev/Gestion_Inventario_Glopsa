@@ -1,13 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const btnAgregarCampos = document.getElementById("btn_agregar_nuevos_campos");
 
-  btnAgregarCampos.addEventListener("click", () => {
-    document.getElementById("registro_nuevos_campos").style.display = "block";
-  });
-
-  const cerrar = document.getElementById("cerrar_ventana_agregarCampos");
-
-  cerrar.addEventListener("click", () => {
-   document.getElementById("registro_nuevos_campos").style.display = "none";
-  });
+ btnAgregarCampos.addEventListener("click", () => {
+   window.location.href = "/agregar_nuevos_datos_pagina";
+ });
+ 
 });

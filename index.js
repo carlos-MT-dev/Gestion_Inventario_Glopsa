@@ -7,7 +7,7 @@ const app = express();
 /* ===========================================
    1. CONFIGURACIONES
 =========================================== */
-app.set("port", 3000);
+app.set("port", 3500);
 app.set("case sensitive routing", false);
 app.set("view engine", "ejs");
 
@@ -64,6 +64,8 @@ const deleteItemPrestamo = require("./src/MOVIMIENTO_INVENTARIO/routes/delete/de
 const actualizarPrestamo = require("./src/MOVIMIENTO_INVENTARIO/routes/actualizar/actualizar-data");
 const buscarPrestamo =  require("./src/MOVIMIENTO_INVENTARIO/routes/search/search_prestamo")
 const agregarNuevosCamposRoutes = require("./src/GESTION DE INVENTARIO/routes/agregar_nuevos_campos/agregar_nuevos_campos")
+const ListarCampos = require("./src/GESTION DE INVENTARIO/routes/agregar_nuevos_campos/listar_campos"); 
+const AgregarNuevosCampos = require("./src/GESTION DE INVENTARIO/routes/get_agregar_nuevos_campos");
 
 
 // Inicio
@@ -95,7 +97,8 @@ app.use(deleteItemPrestamo);
 app.use(actualizarPrestamo);
 app.use(buscarPrestamo);
 app.use(agregarNuevosCamposRoutes);
-  
+app.use(AgregarNuevosCampos);
+app.use(ListarCampos);  
 /* ===========================================
    4. SERVIDOR
 =========================================== */

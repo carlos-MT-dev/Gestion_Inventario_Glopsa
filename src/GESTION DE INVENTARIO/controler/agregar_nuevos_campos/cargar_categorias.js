@@ -64,3 +64,4 @@ function llenarSelect(idSelect, lista, campo, id) {
     select.appendChild(opt);
   });
 }
+// 

@@ -3,186 +3,149 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GLOSAP - registro</title>
-    <link
-      rel="stylesheet"
-      href="/GESTION DE INVENTARIO/Style/registro-css.css"
-    />
-   
+    <title>GLOSAP - Inventario</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Sora:wght@600;700&display=swap" rel="stylesheet" />
+
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- CSS Rediseñado -->
+    <link rel="stylesheet" href="/GESTION DE INVENTARIO/Style/registro-css.css" />
   </head>
+
   <body>
-    <!-- NAVBAR -->
+
+    <!-- ═══════════════════════════════════
+         NAVBAR
+    ═══════════════════════════════════ -->
     <div id="navbar-container">
       <nav class="navbar">
         <div class="nav-left">
           <img
             src="/GESTION DE INVENTARIO/asset/BLANCO.png"
-            alt="Logo Empresa"
+            alt="Logo GLOSAP"
             class="nav-logo"
           />
-          <span class="nav-title"></span>
+          <span class="nav-title">Gestión Corporativa</span>
         </div>
 
         <ul class="nav-menu">
           <li><a href="../../html_reenvio_pagina_no_encontrada.html">Dashboard</a></li>
-          <li>
-            <a href="../../MOVIMIENTO_INVENTARIO/view/prestamo.html"
-              >Prestamos</a
-            >
-          </li>
+          <li class="active"><a href="#">Inventario</a></li>
+          <li><a href="../../MOVIMIENTO_INVENTARIO/view/prestamo.html">Préstamos</a></li>
           <li><a href="../../html_reenvio_pagina_no_encontrada.html">Reportes</a></li>
           <li><a href="../../html_reenvio_pagina_no_encontrada.html">Log Out</a></li>
         </ul>
       </nav>
     </div>
 
+    <!-- ═══════════════════════════════════
+         CONTENEDOR PRINCIPAL
+    ═══════════════════════════════════ -->
     <div class="container">
-      <!-- HEADER DEL FORM -->
+
+      <!-- HEADER -->
       <div class="header">
-        <h1><span class="red">Registra un Articulo</span></h1>
+        <h1><span class="red">Registrar</span> Artículo</h1>
       </div>
 
-      <!-- FORMULARIO -->
+      <!-- ═══════════════════════════════════
+           FORMULARIO
+      ═══════════════════════════════════ -->
       <form method="POST" id="form-registro" class="form">
+
+        <!-- FILA 1: Identificación -->
         <div class="row">
           <div class="input-box">
-            <label>Código</label><input id="Codigo" name="Codigo" type="text" />
+            <label for="Codigo">Código</label>
+            <input id="Codigo" name="Codigo" type="text" placeholder="Auto-generado" />
           </div>
+
           <div class="input-box">
-            <label>Área</label
-            ><select
-              id="ID_area"
-              class="cbb-form"
-              name="ID_area"
-              type="text"
-            ></select>
+            <label for="ID_area">Área</label>
+            <select id="ID_area" class="cbb-form" name="ID_area"></select>
           </div>
+
           <div class="input-box">
-            <label>Categoría</label
-            ><select
-              id="ID_categoria"
-              class="cbb-form"
-              name="ID_categoria"
-              type="text"
-            ></select>
+            <label for="ID_categoria">Categoría</label>
+            <select id="ID_categoria" class="cbb-form" name="ID_categoria"></select>
           </div>
+
           <div class="input-box">
-            <label>Objeto</label
-            ><select
-              id="ID_objeto"
-              class="cbb-form"
-              name="ID_objeto"
-              type="text"
-            ></select>
+            <label for="ID_objeto">Objeto</label>
+            <select id="ID_objeto" class="cbb-form" name="ID_objeto"></select>
           </div>
+
           <div class="input-box">
-            <label>Marca</label
-            ><select
-              id="ID_marca"
-              class="cbb-form"
-              name="ID_marca"
-              type="text"
-            ></select>
+            <label for="ID_marca">Marca</label>
+            <select id="ID_marca" class="cbb-form" name="ID_marca"></select>
           </div>
         </div>
 
+        <!-- FILA 2: Detalles del artículo -->
         <div class="row">
           <div class="input-box">
-            <label>Modelo</label
-            ><select
-              id="ID_modelo"
-              class="cbb-form"
-              name="ID_modelo"
-              type="text"
-            ></select>
+            <label for="ID_modelo">Modelo</label>
+            <select id="ID_modelo" class="cbb-form" name="ID_modelo"></select>
           </div>
+
           <div class="input-box">
-            <label>Unidad de Medida</label
-            ><select
-              id="ID_medida"
-              class="cbb-form"
-              name="ID_medida"
-              type="text"
-            ></select>
+            <label for="ID_medida">Unidad de Medida</label>
+            <select id="ID_medida" class="cbb-form" name="ID_medida"></select>
           </div>
+
           <div class="input-box">
-            <label>Unidades a registrar</label
-            ><input type="text" id="Unidad_txt" name="Unidad_txt" />
+            <label for="Unidad_txt">Unidades a registrar</label>
+            <input type="text" id="Unidad_txt" name="Unidad_txt" placeholder="0" />
           </div>
+
           <div class="input-box">
-            <label>Sede</label
-            ><select
-              id="ID_sede"
-              class="cbb-form"
-              name="ID_sede"
-              type="text"
-            ></select>
+            <label for="ID_sede">Sede</label>
+            <select id="ID_sede" class="cbb-form" name="ID_sede"></select>
           </div>
+
           <div class="input-box">
-            <label>Estado</label
-            ><select
-              id="ID_Estado"
-              class="cbb-form"
-              name="ID_Estado"
-              type="text"
-            ></select>
+            <label for="ID_Estado">Estado</label>
+            <select id="ID_Estado" class="cbb-form" name="ID_Estado"></select>
           </div>
         </div>
 
+        <!-- FILA 3: Condición y fecha -->
         <div class="row">
           <div class="input-box">
-            <label>Disponibilidad</label
-            ><select
-              id="ID_Disponibilidad"
-              class="cbb-form"
-              name="ID_Disponibilidad"
-              type="text"
-            ></select>
+            <label for="ID_Disponibilidad">Disponibilidad</label>
+            <select id="ID_Disponibilidad" class="cbb-form" name="ID_Disponibilidad"></select>
           </div>
 
           <div class="input-box">
-            <label>Condicion</label
-            ><select
-              id="ID_Condicion"
-              class="cbb-form"
-              name="ID_Condicion"
-              type="text"
-            ></select>
+            <label for="ID_Condicion">Condición</label>
+            <select id="ID_Condicion" class="cbb-form" name="ID_Condicion"></select>
           </div>
 
           <div class="input-box">
-            <label>Seccion</label
-            ><select
-              id="ID_seccion"
-              class="cbb-form"
-              name="ID_seccion"
-              type="text"
-            ></select>
+            <label for="ID_seccion">Sección</label>
+            <select id="ID_seccion" class="cbb-form" name="ID_seccion"></select>
           </div>
 
           <div class="input-box">
             <label for="Fecha_Compra">Fecha de compra</label>
-            <input
-              type="date"
-              id="Fecha_Compra"
-              name="Fecha_Compra"
-              class="cbb-form"
-            />
+            <input type="date" id="Fecha_Compra" name="Fecha_Compra" class="cbb-form" />
           </div>
 
           <div class="input-box large">
-            <label>Descripción</label
-            ><input id="Descripcion" name="Descripcion" type="text" />
+            <label for="Descripcion">Descripción</label>
+            <input id="Descripcion" name="Descripcion" type="text" placeholder="Observaciones del artículo..." />
           </div>
         </div>
 
-        <!-- este row es una opcion para poder llenar mas campos -->
-        <div class="row">
-          <!-- <div class="input-box large buscar-box">
-            <label>Buscar 🔍</label><input id="txt-busqueda" name="Buscar" type="text" />
-          </div> -->
-        </div>
+        <!-- FILA EXTRA (dinámica desde JS) -->
+        <div class="row"></div>
 
+        <!-- BOTONES DE ACCIÓN -->
         <div class="buttons">
           <button type="button" id="btn-buscar" class="btn search">
             🔍 Buscar
@@ -200,27 +163,28 @@
             ❌ Eliminar
           </button>
 
-          <button id="btn-registrar" type="button" class="btn register">
+          <button type="button" id="btn-registrar" class="btn register">
             ✔ Registrar
           </button>
 
-          <button
-            id="btn_agregar_nuevos_campos"
-            type="button"
-            class="btn agregar-campos"
-          >
-            agregar campos
+          <button type="button" id="btn_agregar_nuevos_campos" class="btn agregar-campos">
+            ⚙ Agregar campos
           </button>
         </div>
+
       </form>
 
+      <!-- DIVISOR -->
       <hr class="divider" />
 
-      <!-- LISTA DE REGISTROS -->
+      <!-- ═══════════════════════════════════
+           LISTA DE REGISTROS
+      ═══════════════════════════════════ -->
       <h2 class="list-title">
         <span class="red">Lista</span> de Registro
         <span class="gray">| Inventario General</span>
       </h2>
+
       <table class="table">
         <thead>
           <tr class="cabeceras">
@@ -228,179 +192,32 @@
             <th>Área</th>
             <th>Sede</th>
             <th>Objeto</th>
-            <th>Categoria</th>
+            <th>Categoría</th>
             <th>Marca</th>
             <th>Modelo</th>
             <th>Estado</th>
             <th>Registro</th>
             <th>Disponib.</th>
-            <th>Condicion</th>
-            <th>Seccion</th>
+            <th>Condición</th>
+            <th>Sección</th>
             <th>Fecha Compra</th>
-            <th>selec.</th>
+            <th>Selec.</th>
             <th>Mover</th>
-            <th>Cod. Bar</th>
+            <th>Cód. Bar</th>
           </tr>
         </thead>
-
         <tbody id="tbody-objetos"></tbody>
       </table>
+
     </div>
+    <!-- /container -->
 
-    <!-- REGISTRO DE NUEVOS CAMPOS -->
-    <div id="registro_nuevos_campos">
-      <br />
-      <br />
 
-      <div style="display: flex; justify-content: space-evenly">
-        <h1 id="titulo-agregar" style="color: rgb(227, 227, 227)">
-          <strong>Añadir nuevos campos</strong>
-        </h1>
-        <span class="cerrar" id="cerrar_ventana_agregarCampos">✖</span>
-      </div>
-
-      <br />
-      <br />
-
-      <!-- AGREGAR OBJETO -->
-
-      <form method="POST" id="form_nuevos_registros_objeto" class="form">
-        <div class="row">
-          <div class="input-box marca-box">
-            <label>Objeto</label>
-            <input id="txt_nuevo_objeto" name="txt_nuevo_objeto" type="text" />
-          </div>
-
-          <div class="input-box marca-box">
-            <label>Categoria</label>
-            <select
-              id="agregar_categoria_objeto"
-              class="cbb-form ID_categoria_agregar"
-              name="agregar_categoria_objeto"
-              type="text"
-            ></select>
-          </div>
-
-          <button
-            id="btn_registrar_objeto"
-            type="button"
-            class="btn btn_registro_nuevo"
-          >
-            Registrar
-          </button>
-        </div>
-      </form>
-      <form method="POST" id="form_nuevos_registros_marca" class="form">
-        <!-- AGREGAR MARCAS -->
-        <div class="row">
-          <div class="input-box marca-box">
-            <label>Marca</label>
-            <input id="txt_nueva_marca" name="txt_nueva_marca" type="text" />
-          </div>
-
-          <div class="input-box marca-box">
-            <label>Categoria</label>
-            <select
-              id="agregar_categoria_marca"
-              class="cbb-form ID_categoria_agregar"
-              name="agregar_categoria_marca"
-              type="text"
-            ></select>
-          </div>
-
-          <button
-            id="btn_registrar_marca"
-            type="button"
-            class="btn btn_registro_nuevo"
-          >
-            Registrar
-          </button>
-        </div>
-      </form>
-
-      <form method="POST" id="form_nuevos_registros_modelo" class="form">
-        <!-- AGREGAR MODELO -->
-        <div class="row">
-          <div class="input-box marca-box">
-            <label>Modelo</label>
-            <input id="txt_nuevo_modelo" name="txt_nuevo_modelo" type="text" />
-          </div>
-
-          <div class="input-box marca-box">
-            <label>Categoria</label>
-            <select
-              id="agregar_categoria_modelo"
-              class="cbb-form ID_categoria_agregar"
-              name="agregar_categoria_modelo"
-              type="text"
-            ></select>
-          </div>
-
-          <button
-            id="btn_registrar_modelo"
-            type="button"
-            class="btn btn_registro_nuevo"
-          >
-            Registrar
-          </button>
-        </div>
-      </form>
-    </div>
-
-    <style>
-      #registro_nuevos_campos {
-        box-shadow: 15px 15px;
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgb(43, 74, 174);
-        border: 2px solid #5f5d5d;
-        padding: 20px;
-        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
-        z-index: 1000;
-        border-radius: 30px;
-        width: 600px;
-        align-content: center;
-      }
-
-      #registro_nuevos_campos label {
-        color: rgb(243, 243, 243);
-      }
-      .titulo-agregar {
-        color: rgb(255, 255, 255);
-        font-size: 30px;
-      }
-
-      .btn_registro_nuevo {
-        background: #ffffff;
-        border: 2px solid #5f5d5d;
-        color: #5f5d5d;
-        height: 45px;
-        margin-top: 20px;
-      }
-      .ID_categoria_agregar {
-        width: 200px;
-      }
-      .cerrar {
-        cursor: pointer;
-        float: right;
-        font-weight: bold;
-        font-size: 45px;
-        height: 45px;
-        width: 45px;
-      }
-    </style>
-    <!-- importaciones de jquery -->
-<!-- jQuery PRIMERO -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Select2 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
-<!-- Select2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- ═══════════════════════════════════
+         SCRIPTS (orden original preservado)
+    ═══════════════════════════════════ -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script src="/GESTION DE INVENTARIO/controler/select/select_row_and_fill_cbb.js"></script>
     <script src="/GESTION DE INVENTARIO/controler/add_data_to_table.js"></script>
@@ -410,21 +227,12 @@
     <script src="/GESTION DE INVENTARIO/controler/reload/reload-page-on-click.js"></script>
     <script src="/GESTION DE INVENTARIO/controler/update/update_row_from_db.js"></script>
     <script src="/GESTION DE INVENTARIO/controler/mover/btn-mover.js"></script>
-    <script
-    type="module"
-    src="/GESTION DE INVENTARIO/controler/search/search_txtCod_data_to_table.js"
-    ></script>
-    
-    <script
-    type="module"
-    src="/GESTION DE INVENTARIO/controler/codigo/genera_codigo.js"
-    ></script>
-    
+    <script type="module" src="/GESTION DE INVENTARIO/controler/search/search_txtCod_data_to_table.js"></script>
+    <script type="module" src="/GESTION DE INVENTARIO/controler/codigo/genera_codigo.js"></script>
     <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/mostrar_ventana_agregar_nuevoscampos.js"></script>
-    <!-- Este es el botn observado -->
-    <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/btn_enviar_nuevos_datos.js"></script> 
+    <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/btn_enviar_nuevos_datos.js"></script>
     <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/cargar_categorias.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode/dist/JsBarcode.all.min.js"></script>
+
   </body>
 </html>
- 

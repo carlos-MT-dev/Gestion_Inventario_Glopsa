@@ -63,14 +63,18 @@ async function insertarObjeto(data) {
 
 module.exports = insertarObjeto;
 
-
 async function tranformarCodigo(data) {
   let areaAbrev = "";
   let sedeAbrev = "";
   // se asignan los valores de las abreviaciones
   areaAbrev = await validarArea(data.ID_area);
   sedeAbrev = await validarSede(data.ID_sede);
-  console.log("Abreviatura de área:", areaAbrev, " y abreviatura de sede:", sedeAbrev);
+  console.log(
+    "Abreviatura de área:",
+    areaAbrev,
+    " y abreviatura de sede:",
+    sedeAbrev,
+  );
   const Codigo = `${sedeAbrev}-${areaAbrev}-${Date.now()}`; //aqui agregar el id unico de la bd
   return Codigo;
 }
@@ -99,6 +103,9 @@ async function validarArea(dataArea) {
     case "9":
       areaId = "OP";
       return areaId;
+    case "13":
+      areaId = "ALM";
+      return areaId;
   }
 }
 
@@ -106,14 +113,20 @@ async function validarSede(dataSede) {
   let sedeId = "";
 
   switch (dataSede) {
+    case "1":
+      sedeId = "BKN";
+      return sedeId;
     case "2":
       sedeId = "JBG";
       return sedeId;
     case "3":
       sedeId = "IMF";
       return sedeId;
-    case "1":
-      sedeId = "BKN";
+    case "4":
+      sedeId = "EXTR";
+      return sedeId;
+    case "5":
+      sedeId = "VEXEL";
       return sedeId;
   }
 }
