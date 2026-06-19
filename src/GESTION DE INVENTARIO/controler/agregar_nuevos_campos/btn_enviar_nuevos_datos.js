@@ -56,7 +56,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // btn_registrar_objeto.addEventListener("click", () => enviarFormulario(form1, txt_nuevo_objeto));
-  // btn_registrar_marca.addEventListener("click", () => enviarFormulario(form2, txt_nueva_marca));
-  // btn_registrar_modelo.addEventListener("click", () => enviarFormulario(form3, txt_nuevo_modelo));
+  
 });

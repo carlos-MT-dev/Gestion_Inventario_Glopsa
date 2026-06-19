@@ -66,7 +66,7 @@ const buscarPrestamo =  require("./src/MOVIMIENTO_INVENTARIO/routes/search/searc
 const agregarNuevosCamposRoutes = require("./src/GESTION DE INVENTARIO/routes/agregar_nuevos_campos/agregar_nuevos_campos")
 const ListarCampos = require("./src/GESTION DE INVENTARIO/routes/agregar_nuevos_campos/listar_campos"); 
 const AgregarNuevosCampos = require("./src/GESTION DE INVENTARIO/routes/get_agregar_nuevos_campos");
-
+const EliminarNuevosCampos = require("./src/GESTION DE INVENTARIO/routes/agregar_nuevos_campos/eliminar_nuevos_campos")
 
 // Inicio
 app.get("/", (req, res) => {
@@ -99,6 +99,7 @@ app.use(buscarPrestamo);
 app.use(agregarNuevosCamposRoutes);
 app.use(AgregarNuevosCampos);
 app.use(ListarCampos);  
+app.use(EliminarNuevosCampos);
 /* ===========================================
    4. SERVIDOR
 =========================================== */

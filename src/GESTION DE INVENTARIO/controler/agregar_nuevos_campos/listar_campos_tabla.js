@@ -17,13 +17,27 @@ document.addEventListener("DOMContentLoaded", async () => {
     recuento.textContent = "0";
   };
 
-  const crearBotonEditar = (idCampo) =>
-    `<button class="btn_tabla btn_editar" data-id="${idCampo}" data-accion="editar">
-       📝 Editar
-     </button>`;
+  // (registro[nombreField], registro.Categoria, registro.Estado);
+  const crearBotonEditar = (
+    idCampo,
+    tipoElemento,
+    nombreCampo,
+    categoria,
+    estado,
+  ) =>
+    `<button
+      class="btn_tabla btn_editar"
+      data-id="${idCampo}"
+      data-tipo="${tipoElemento}"
+      data-nombre="${nombreCampo}"
+      data-categoria="${categoria}"
+      data-estado="${estado}"
+      data-accion="editar">
+      📝 Editar
+   </button>`;
 
-  const crearBotonEliminar = (idCampo) =>
-    `<button class="btn_tabla btn_eliminar" data-id="${idCampo}" data-accion="eliminar">
+  const crearBotonEliminar = (idCampo, tipoElemento) =>
+    `<button class="btn_tabla btn_eliminar" data-id="${idCampo}" data-accion="eliminar" data-tipo="${tipoElemento}">
        🗑️ Eliminar
      </button>`;
 
@@ -39,8 +53,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             <td>${registro[nombreField]}</td>
             <td>${registro.Categoria}</td>
             <td>${registro.Estado}</td>
-            <td>${crearBotonEditar(registro[idField])}</td>
-            <td>${crearBotonEliminar(registro[idField])}</td>
+            <td>${crearBotonEditar(registro[idField], tipo, registro[nombreField], registro.Categoria, registro.Estado)}</td>
+            <td>${crearBotonEliminar(registro[idField], tipo)}</td>
           </tr>
         `,
       )
@@ -64,18 +78,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     ({
       data: { items, marcas, modelos },
     } = await response.json());
+
+    
   } catch (error) {
     console.error("Error al cargar datos:", error);
 
+    // ID_modelo: 4,
+    //   modelo: 'STONG ARM',
+    //   Categoria: 'LIMPIEZA',
+    //   Estado: 'Activo',
+    //   descripcion: ''
 
+    //  ID_marca: 27,
+    // Marca: 'FABER CASTELL',
+    // Area: 'ALMACEN',
+    // Categoria: 'GENERICO',
+    // Estado: 'Activo',
+    // descripcion: ''
 
-
-// renderizar por defecto los campos de objeto
+    // renderizar por defecto los campos de objeto
   }renderizarTabla({
     datos: items,
     idField: "ID_item",
     nombreField: "Item",
-    tipo: "objeto",
+    tipo: "item",
   });
 
   // ── Listeners de los botones de filtro ───────────────────────────────────
@@ -84,7 +110,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       datos: items,
       idField: "ID_item",
       nombreField: "Item",
-      tipo: "objeto",
+      tipo: "item",
     });
   });
 
@@ -106,28 +132,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  // ── Delegación de eventos: Editar y Eliminar ─────────────────────────────
-  // Un único listener en el <tbody> cubre TODOS los botones, presentes y futuros.
-  // Cuando el usuario hace click en cualquier parte de la tabla, revisamos si
-  // el elemento clicado (o su ancestro más cercano) es un botón de acción.
-  tabla.addEventListener("click", (event) => {
-    const boton = event.target.closest("[data-accion]");
-
-    // Si el click no fue sobre un botón de acción, ignoramos el evento
-    if (!boton) return;
-
-    const accion = boton.dataset.accion; // "editar" | "eliminar"
-    const id = boton.dataset.id;
-    const tipo = tipoActivo; // "objeto" | "marca" | "modelo"
-
-    if (accion === "editar") {
-      // TODO: llamada al backend Express para obtener y cargar los datos
-      // del registro con `id` del tipo `tipo`, y mostrarlos en el formulario de edición.
-    }
-
-    if (accion === "eliminar") {
-      // TODO: llamada al backend Express para eliminar el registro con `id`
-      // del tipo `tipo`, y luego refrescar la tabla.
-    }
-  });
+  
 });
+
+
+

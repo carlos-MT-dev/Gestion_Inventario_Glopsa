@@ -4,11 +4,18 @@ const eliminarFila = require("../../mysql-querys/delete/delete_row_selected");
 
 router.delete("/api/delete/", async (req, res) => {
   try {
-    console.log("ID recibido en backend:", req.body.id, "Tipo:", typeof req.body.id);
+    console.log(
+      "ID recibido en backend:",
+      req.body.id,
+      "Tipo:",
+      typeof req.body.id,
+    );
     const data = await eliminarFila(req.body.id);
     console.log("Resultado de eliminación:", data);
     if (data.affectedRows === 0) {
-      return res.status(404).json({ ok: false, message: "Objeto no encontrado o ya eliminado" });
+      return res
+        .status(404)
+        .json({ ok: false, message: "Objeto no encontrado o ya eliminado" });
     }
     res.json({ ok: true, message: "Objeto eliminado correctamente" });
   } catch (error) {

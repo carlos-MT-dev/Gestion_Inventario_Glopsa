@@ -28,7 +28,6 @@
 
   <body>
     <div class="container">
-
       <!-- ═══════════════════════════════════
            SIDEBAR
       ═══════════════════════════════════ -->
@@ -63,9 +62,10 @@
            CONTENT
       ═══════════════════════════════════ -->
       <main class="content">
-
         <h1>Gestión de Campos</h1>
-        <p class="subtitle">Administración de categorías de los campos del sistema</p>
+        <p class="subtitle">
+          Administración de categorías de los campos del sistema
+        </p>
 
         <!-- ── TABLA DE CAMPOS ── -->
         <section class="card card-tabla">
@@ -109,25 +109,25 @@
           <div class="form-row">
             <div class="input-group">
               <label>Nombre campo</label>
-              <!-- Sin id personalizado: el JS original no asignaba id a estos inputs,
-                   los seleccionaba por posición o clase dentro del form-card.
-                   Se respetan exactamente como estaban en el HTML original. -->
-              <input type="text" />
+              <input type="text" id="txt_agregar_nombre_campos"/>
+            </div>
+
+            
+
+            <div class="input-group">
+              <label for="cbb-categoria" >Categoria</label>
+              <select name="cbb-categoria" id="cbb_agregar_categoria_campos"class="cbb_agregar_nuevos_campos cbb">
+                <option value="">seelc1 </option>
+                <option value="">selec2</option>
+              </select>
             </div>
 
             <div class="input-group">
-              <label>Area</label>
-              <input type="text" />
-            </div>
-
-            <div class="input-group">
-              <label>Categoria</label>
-              <input type="text" />
-            </div>
-
-            <div class="input-group">
-              <label>Estado</label>
-              <input type="text" />
+              <label for="cbb-estado" >Estado</label>
+              <select name="cbb-estado" id="cbb_agregar_estado_campos" class="cbb_agregar_nuevos_campos cbb">
+                <option value="">seelc1 </option>
+                <option value="">selec2F</option>
+              </select>
             </div>
           </div>
 
@@ -151,7 +151,6 @@
             <i class="fas fa-trash"></i> Eliminar
           </button>
         </div>
-
       </main>
     </div>
 
@@ -159,7 +158,8 @@
          SCRIPTS — orden y rutas 100% originales
     ═══════════════════════════════════ -->
     <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/listar_campos_tabla.js"></script>
+    <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/eliminar_editar_nuevos_campos.js"></script>
     <!-- <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/btn_enviar_nuevos_datos.js"></script> -->
-    <!-- <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/cargar_categorias.js"></script> -->
+    <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/cargar_cbb_campos.js"></script>
   </body>
 </html>

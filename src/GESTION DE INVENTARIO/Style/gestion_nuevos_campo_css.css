@@ -441,6 +441,7 @@ input {
   height: 38px;
 }
 
+
 input:hover,
 textarea:hover {
   border-color: #CBD5E1;
@@ -460,6 +461,39 @@ textarea {
   line-height: 1.6;
 }
 
+/* Esto es para los cbbs  del registro de nuevos campos */
+
+.cbb_agregar_nuevos_campos{
+   background: var(--surface-input);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 9px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--text-primary);
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+  outline: none;
+  width: 100%;
+}
+
+
+.cbb:hover
+ {
+  border-color: #CBD5E1;
+  background: #fff;
+}
+
+.cbbut:focus {
+  border-color: var(--border-focus);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+}
+
+.cbb {
+  resize: none;
+
+  line-height: 1.6;
+}
 /* ===================================================
    WRAPPER BOTONES DE ACCIÓN
    =================================================== */

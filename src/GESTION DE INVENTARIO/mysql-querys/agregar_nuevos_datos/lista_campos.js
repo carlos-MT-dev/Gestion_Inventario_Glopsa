@@ -6,7 +6,7 @@ SELECT
     i.ID_item,
     i.Item,
     c.Categoria,
-    i.Estado,
+    i.ID_Estado AS Estado,
     i.descripcion
 FROM item i
 LEFT JOIN categoria c
@@ -29,13 +29,12 @@ async function getListaNuevosMarca() {
   SELECT
     m.ID_marca,
     m.Marca,
-    a.Area,
+ 
     c.Categoria,
-    m.Estado,
+    m.ID_Estado AS Estado,
     m.descripcion
 FROM marca m
-LEFT JOIN area a
-    ON m.ID_area = a.ID_area
+
 LEFT JOIN categoria c
     ON m.ID_categoria = c.ID_categoria
 ORDER BY m.ID_marca DESC;
@@ -57,7 +56,7 @@ async function getListaNuevosModelo() {
     mo.ID_modelo,
     mo.modelo,
     c.Categoria,
-    mo.Estado,
+    mo.ID_Estado AS Estado,
     mo.descripcion
 FROM modelo mo
    

@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      console.log("Respuesta servidor:", data);
+     
 
       if (data.ok) {
         alert("Registro exitoso");

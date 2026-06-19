@@ -1,35 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const btn_agregar_nuevos_campos = document.getElementById(
-    "btn_agregar_nuevos_campos",
-  );
-
-  btn_agregar_nuevos_campos.addEventListener("click", () => {
-    cargarCombosParaAgregar();
-  });
+  cargarCombosParaAgregar();
 });
 
 async function cargarCombosParaAgregar() {
   try {
     const res = await fetch("/api/form");
     const data = await res.json();
-    console.log(data.categoria)
+    // console.log(data.categoria)
+    //idSelect, lista, campo, id
     llenarSelect(
-      "agregar_categoria_objeto",
+      "cbb_agregar_area_campos"
+      , data.area
+      , "Area"
+      , "ID_area"
+    );
+    llenarSelect(
+      "cbb_agregar_categoria_campos",
       data.categoria,
       "categoria",
       "ID_categoria",
     );
     llenarSelect(
-      "agregar_categoria_modelo",
-      data.categoria,
-      "categoria",
-      "ID_categoria",
-    );
-    llenarSelect(
-      "agregar_categoria_marca",
-      data.categoria,
-      "categoria",
-      "ID_categoria",
+      "cbb_agregar_estado_campos",
+      data.estadoObj,
+      "estado",
+      "ID_Estado",
     );
   } catch (error) {
     console.error(
@@ -64,4 +59,4 @@ function llenarSelect(idSelect, lista, campo, id) {
     select.appendChild(opt);
   });
 }
-// 
+//
