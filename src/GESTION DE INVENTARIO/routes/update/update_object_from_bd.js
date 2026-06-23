@@ -9,7 +9,7 @@ router.put("/actualizar/equipo/:id", upload.none(), async (req, res) => {
   try {
     const idObjeto = req.params.id;
     console.log("ID a actualizar:", idObjeto);
-    console.log("Datos recibidos para la actualizacion:", req.body);
+    // console.log("Datos recibidos para la actualizacion:", req.body);
 
     const result = await actualizarObjeto(req.body, idObjeto);
 

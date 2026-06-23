@@ -1,21 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const btn_agregar_campos = document.getElementById("btn_agregar_campos");
+  const btn_actualizar_campo = document.getElementById("btn_actualizar_campo");
   const form_nuevos_campos = document.getElementById("form_nuevos_campos");
 
-  if (!btn_agregar_campos || !form_nuevos_campos) {
-    console.error("No se encontró el boton para enviar nuevos campos");
+  if (!btn_actualizar_campo || !form_nuevos_campos) {
+    console.error("No se encontró el botón para actualizar campos");
     return;
   }
 
-  btn_agregar_campos.addEventListener("click", async (event) => {
+  btn_actualizar_campo.addEventListener("click", async (event) => {
     event.preventDefault();
 
     const formData = new FormData(form_nuevos_campos);
     const jsonData = Object.fromEntries(formData.entries());
-    
+
     try {
-      const response = await fetch("/registrar_nuevos_datos", {
-        method: "POST",
+      const response = await fetch("/actualizar_nuevos_datos", {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const result = await response.json();
-    //   console.log("Resultado del envío:", result);
+      // console.log("Resultado del envío:", result);
 
       if (!response.ok) {
         throw new Error(result.message || "Error al enviar el formulario");

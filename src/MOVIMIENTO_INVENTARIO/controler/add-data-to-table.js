@@ -35,7 +35,7 @@ async function cargarTabla() {
         <td>${obj.Estado ?? "_"}</td>
         <td>${new Date(obj.Fecha_prestamo).toISOString().split("T")[0] ?? ""}</td>
         <td>${new Date(obj.Fecha_retorno).toISOString().split("T")[0] ?? ""}</td>
-        <td>${obj.Descripcion ?? "_"}</td>
+      
         <td>
           <button 
             class="btn-edit btn buttons select-btn"

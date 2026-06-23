@@ -13,7 +13,7 @@ async function loadFormData() {
   try {
     const res = await fetch("/api/form");
     formData = await res.json();
-    console.log("Datos cargados:", formData);
+    // console.log("Datos cargados:", formData);
   } catch (error) {
     console.error("Error cargando datos:", error);
   }

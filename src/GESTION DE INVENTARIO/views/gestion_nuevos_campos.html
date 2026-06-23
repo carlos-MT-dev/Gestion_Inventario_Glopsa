@@ -19,7 +19,7 @@
       rel="stylesheet"
     />
 
-    <!-- CSS Rediseñado -->
+    <!-- CSS -->
     <link
       rel="stylesheet"
       href="/GESTION%20DE%20INVENTARIO/Style/gestion_nuevos_campo_css.css"
@@ -40,7 +40,6 @@
         <div class="menu-title">Categorías</div>
 
         <div class="menu">
-          <!-- IDs originales preservados — el JS los escucha directamente -->
           <button type="button" class="menu-item active" id="btn_objeto">
             <i class="fas fa-cube"></i>
             Objeto
@@ -55,25 +54,32 @@
             <i class="far fa-rectangle-list"></i>
             Modelo
           </button>
+
+          <button type="button" class="menu-item" id="btn_retornar_registro">
+            <i class="fa-regular fa-pen-to-square"></i>
+            volver
+          </button>
         </div>
       </aside>
 
       <!-- ═══════════════════════════════════
-           CONTENT
+           CONTENIDO PRINCIPAL
       ═══════════════════════════════════ -->
       <main class="content">
         <h1>Gestión de Campos</h1>
+
         <p class="subtitle">
           Administración de categorías de los campos del sistema
         </p>
 
-        <!-- ── TABLA DE CAMPOS ── -->
+        <!-- ──────────────────────────────
+             TABLA DE CAMPOS
+        ────────────────────────────── -->
         <section class="card card-tabla">
           <h2>Listado de campos registrados</h2>
 
           <div class="tabla-container">
             <table class="Lista_campos">
-              <!-- clase original: cabecera_tabla_lista_campos -->
               <thead class="cabecera_tabla_lista_campos">
                 <tr>
                   <th>IdCampo</th>
@@ -84,7 +90,7 @@
                   <th>Eliminar</th>
                 </tr>
               </thead>
-              <!-- id + clase originales que usa listar_campos_tabla.js -->
+
               <tbody
                 class="tbody_tabla_lista_campos"
                 id="tbody_tabla_lista_campos"
@@ -92,74 +98,120 @@
             </table>
           </div>
 
-          <!-- id="recuento_res" e id="recuento_res_num" usados por el JS -->
           <div class="footer-table">
             <i class="fas fa-cube" id="recuento_res"></i>
+
             Mostrando
             <span id="recuento_res_num"></span>
-            objetos registrados
+            <span id="nombre_campo_listado"></span>
           </div>
         </section>
 
-        <!-- ── FORMULARIO DE REGISTRO ── -->
-        <section class="card form-card">
+        <!-- version nuva -->
+
+        <form
+          class="card form-card"
+          id="form_nuevos_campos"
+          method="POST"
+          action="/registrar_nuevos_datos"
+        >
           <h2>Registro de nuevos campos</h2>
           <p>Completa los datos para agregar o modificar un campo</p>
 
           <div class="form-row">
             <div class="input-group">
-              <label>Nombre campo</label>
-              <input type="text" id="txt_agregar_nombre_campos"/>
-            </div>
-
+              <label for="id_campo">id campo</label>
+              <input 
+                type="text"
+                id="txt_id_campos" 
+                name="id_campo"
             
+                 />
+            </div>
 
             <div class="input-group">
-              <label for="cbb-categoria" >Categoria</label>
-              <select name="cbb-categoria" id="cbb_agregar_categoria_campos"class="cbb_agregar_nuevos_campos cbb">
-                <option value="">seelc1 </option>
-                <option value="">selec2</option>
+              <label for="nombre_campo">Nombre campo</label>
+              <input
+                type="text"
+                id="txt_agregar_nombre_campos"
+                name="nombre_campo"
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="tabla">Tabla</label>
+              <select
+                name="tabla"
+                id="cbb_agregar_tabla_campos"
+                class="cbb_agregar_nuevos_campos cbb"
+              >
+                <option value="SELECCIONAR">SELECCIONAR</option>
+                <option value="item">item</option>
+                <option value="modelo">modelo</option>
+                <option value="marca">marca</option>
               </select>
             </div>
 
             <div class="input-group">
-              <label for="cbb-estado" >Estado</label>
-              <select name="cbb-estado" id="cbb_agregar_estado_campos" class="cbb_agregar_nuevos_campos cbb">
-                <option value="">seelc1 </option>
-                <option value="">selec2F</option>
-              </select>
+              <label for="categoria">Categoria</label>
+              <select
+                name="categoria"
+                id="cbb_agregar_categoria_campos"
+                class="cbb_agregar_nuevos_campos cbb"
+              ></select>
+            </div>
+
+            <div class="input-group">
+              <label for="estado">Estado</label>
+              <select
+                name="estado"
+                id="cbb_agregar_estado_campos"
+                class="cbb_agregar_nuevos_campos cbb"
+              ></select>
             </div>
           </div>
 
           <div class="input-group">
-            <label>Descripcion</label>
-            <textarea rows="4"></textarea>
+            <label for="descripcion">Descripcion</label>
+            <textarea
+              rows="4"
+              id="txt_descripcion_campos"
+              name="descripcion"
+            ></textarea>
           </div>
-        </section>
 
-        <!-- ── BOTONES DE ACCIÓN ──
-             Clases y orden originales. El JS de btn_enviar_nuevos_datos.js
-             los selecciona por clase o por posición. -->
-        <div class="action-buttons">
-          <button type="button" class="btn-primary">
-            <i class="fas fa-plus"></i> Agregar
-          </button>
-          <button type="button" class="btn-primary">
-            <i class="fas fa-rotate"></i> Actualizar
-          </button>
-          <button type="button" class="btn-primary">
-            <i class="fas fa-trash"></i> Eliminar
-          </button>
-        </div>
+          <div class="action-buttons">
+            <button type="button" class="btn-primary" id="btn_agregar_campos">
+              <i class="fas fa-plus"></i>
+              Agregar
+            </button>
+
+            <button type="button" class="btn-primary" id="btn_actualizar_campo">
+              <i class="fas fa-rotate"></i>
+              Actualizar
+            </button>
+
+            <button type="button" class="btn-primary">
+              <i class="fas fa-trash"></i>
+              Eliminar
+            </button>
+          </div>
+        </form>
       </main>
     </div>
 
     <!-- ═══════════════════════════════════
-         SCRIPTS — orden y rutas 100% originales
+         SCRIPTS
     ═══════════════════════════════════ -->
     <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/listar_campos_tabla.js"></script>
+
     <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/eliminar_editar_nuevos_campos.js"></script>
-    <!-- <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/btn_enviar_nuevos_datos.js"></script> -->
+
+    <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/btn_enviar_nuevos_datos.js"></script>
+    <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/actualizar_registro_campo.js"></script>
+
     <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/cargar_cbb_campos.js"></script>
+
+    <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/retornar_registro_item.js"></script>
   </body>
 </html>

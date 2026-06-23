@@ -64,6 +64,7 @@ const deleteItemPrestamo = require("./src/MOVIMIENTO_INVENTARIO/routes/delete/de
 const actualizarPrestamo = require("./src/MOVIMIENTO_INVENTARIO/routes/actualizar/actualizar-data");
 const buscarPrestamo =  require("./src/MOVIMIENTO_INVENTARIO/routes/search/search_prestamo")
 const agregarNuevosCamposRoutes = require("./src/GESTION DE INVENTARIO/routes/agregar_nuevos_campos/agregar_nuevos_campos")
+const actualizarNuevosCamposRoutes = require("./src/GESTION DE INVENTARIO/routes/agregar_nuevos_campos/actualizar_nuevos_campos")
 const ListarCampos = require("./src/GESTION DE INVENTARIO/routes/agregar_nuevos_campos/listar_campos"); 
 const AgregarNuevosCampos = require("./src/GESTION DE INVENTARIO/routes/get_agregar_nuevos_campos");
 const EliminarNuevosCampos = require("./src/GESTION DE INVENTARIO/routes/agregar_nuevos_campos/eliminar_nuevos_campos")
@@ -97,6 +98,7 @@ app.use(deleteItemPrestamo);
 app.use(actualizarPrestamo);
 app.use(buscarPrestamo);
 app.use(agregarNuevosCamposRoutes);
+app.use(actualizarNuevosCamposRoutes);
 app.use(AgregarNuevosCampos);
 app.use(ListarCampos);  
 app.use(EliminarNuevosCampos);

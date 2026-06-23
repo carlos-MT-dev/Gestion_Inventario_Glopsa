@@ -5,65 +5,99 @@ document.addEventListener("DOMContentLoaded", async () => {
   const btnMarca = document.getElementById("btn_marca");
   const btnModelo = document.getElementById("btn_modelo");
   const recuento = document.getElementById("recuento_res_num");
+  const nombreCampoLista = document.getElementById("nombre_campo_listado");
 
-  // ── Estado activo ────────────────────────────────────────────────────────
-  // Guarda qué tipo de datos se están mostrando actualmente en la tabla.
-  // Lo necesitamos en los handlers para saber a qué endpoint llamar.
-  let tipoActivo = null; // "objeto" | "marca" | "modelo"
 
   // ── Utilidades de renderizado ────────────────────────────────────────────
   const limpiarTabla = () => {
     tabla.innerHTML = "";
+    nombreCampoLista.textContent = "";
     recuento.textContent = "0";
   };
 
-  // (registro[nombreField], registro.Categoria, registro.Estado);
+  // CREACION DE BOTONES
   const crearBotonEditar = (
     idCampo,
-    tipoElemento,
     nombreCampo,
     categoria,
     estado,
+    descripcion
   ) =>
     `<button
       class="btn_tabla btn_editar"
       data-id="${idCampo}"
-      data-tipo="${tipoElemento}"
       data-nombre="${nombreCampo}"
       data-categoria="${categoria}"
       data-estado="${estado}"
+      data-descripcion = "${descripcion}"
       data-accion="editar">
       📝 Editar
    </button>`;
 
-  const crearBotonEliminar = (idCampo, tipoElemento) =>
-    `<button class="btn_tabla btn_eliminar" data-id="${idCampo}" data-accion="eliminar" data-tipo="${tipoElemento}">
+  const crearBotonEliminar = (
+    idCampo, 
+    tipoElemento
+  )=>
+    `<button 
+      class="btn_tabla btn_eliminar"
+      data-id="${idCampo}"
+      data-accion="eliminar" 
+      data-tipo="${tipoElemento}">
        🗑️ Eliminar
      </button>`;
 
-  const renderizarTabla = ({ datos, idField, nombreField, tipo }) => {
+  //FUNCION PARA LISTAR LA TABLA DE MANERA DINAMICA
+  const renderizarTabla = ({
+    campoList,
+    columId,
+    colmNombre,
+    columCategoria,
+    columEstado,
+    tablaOrigen,
+    idCategoria,
+    idEstado,
+    descripcion
+  }) => {
     limpiarTabla();
-    tipoActivo = tipo;
+   
 
-    tabla.innerHTML = datos
+    tabla.innerHTML = campoList
       .map(
-        (registro) => `
+        (elementCampo) => `
           <tr>
-            <td>${registro[idField]}</td>
-            <td>${registro[nombreField]}</td>
-            <td>${registro.Categoria}</td>
-            <td>${registro.Estado}</td>
-            <td>${crearBotonEditar(registro[idField], tipo, registro[nombreField], registro.Categoria, registro.Estado)}</td>
-            <td>${crearBotonEliminar(registro[idField], tipo)}</td>
+            <td>${elementCampo[columId]}</td>
+            <td>${elementCampo[colmNombre]}</td>
+            <td>${elementCampo[columCategoria]}</td>
+            <td>${elementCampo[columEstado]}</td>
+            <td>${crearBotonEditar(
+              elementCampo[columId],
+              elementCampo[colmNombre],
+              elementCampo[idCategoria],
+              elementCampo[idEstado],
+              elementCampo[descripcion]
+            )}
+            </td>
+            <td>
+            ${crearBotonEliminar(
+              elementCampo[columId],
+              tablaOrigen)}
+            </td>
           </tr>
         `,
       )
       .join("");
 
-    recuento.textContent = datos.length;
-  };
+    recuento.textContent = campoList.length;
 
-  // ── Carga de datos ───────────────────────────────────────────────────────
+  //valida la pluralidad
+    if (campoList.length ==1){
+       nombreCampoLista.textContent = tablaOrigen +" "+"registrada";
+    } else{
+      nombreCampoLista.textContent = tablaOrigen + "s" +" "+"resgistradas(os)";
+    }
+  };
+// -------------------------------------------------------------------
+// variables que almacenan los resulatdos llegados de la API
   let items = [];
   let marcas = [];
   let modelos = [];
@@ -75,65 +109,70 @@ document.addEventListener("DOMContentLoaded", async () => {
       throw new Error(`Error HTTP: ${response.status}`);
     }
 
-    ({
-      data: { items, marcas, modelos },
-    } = await response.json());
+    ({data: { items,  marcas, modelos }  } =await response.json());
 
-    
+
   } catch (error) {
     console.error("Error al cargar datos:", error);
 
-    // ID_modelo: 4,
-    //   modelo: 'STONG ARM',
-    //   Categoria: 'LIMPIEZA',
-    //   Estado: 'Activo',
-    //   descripcion: ''
-
-    //  ID_marca: 27,
-    // Marca: 'FABER CASTELL',
-    // Area: 'ALMACEN',
-    // Categoria: 'GENERICO',
-    // Estado: 'Activo',
-    // descripcion: ''
-
     // renderizar por defecto los campos de objeto
-  }renderizarTabla({
-    datos: items,
-    idField: "ID_item",
-    nombreField: "Item",
-    tipo: "item",
+  }
+
+
+
+
+  renderizarTabla({
+    campoList: items,
+    columId: "ID_item",
+    colmNombre: "Item",
+    columCategoria: "Categoria",
+    columEstado: "Estado",
+    tablaOrigen: "item",
+    idCategoria: "ID_categoria",
+    idEstado: "ID_Estado",
+    descripcion: "descripcion"
   });
 
   // ── Listeners de los botones de filtro ───────────────────────────────────
   btnObjeto.addEventListener("click", () => {
-    renderizarTabla({
-      datos: items,
-      idField: "ID_item",
-      nombreField: "Item",
-      tipo: "item",
-    });
+     renderizarTabla({
+       campoList: items,
+       columId: "ID_item",
+       colmNombre: "Item",
+       columCategoria: "Categoria",
+       columEstado: "Estado",
+       tablaOrigen: "item",
+       idCategoria: "ID_categoria",
+       idEstado: "ID_Estado",
+       descripcion: "descripcion",
+     });
   });
 
   btnMarca.addEventListener("click", () => {
     renderizarTabla({
-      datos: marcas,
-      idField: "ID_marca",
-      nombreField: "Marca",
-      tipo: "marca",
+      campoList: marcas,
+      columId: "ID_marca",
+      colmNombre: "Marca",
+      columCategoria: "Categoria",
+      columEstado: "Estado",
+      tablaOrigen: "marca",
+      idCategoria: "ID_categoria",
+      idEstado: "ID_Estado",
+      descripcion: "descripcion",
     });
   });
 
   btnModelo.addEventListener("click", () => {
     renderizarTabla({
-      datos: modelos,
-      idField: "ID_modelo",
-      nombreField: "modelo",
-      tipo: "modelo",
+      campoList: modelos,
+      columId: "ID_modelo",
+      colmNombre: "modelo",
+      columCategoria: "Categoria",
+      columEstado: "Estado",
+      tablaOrigen: "modelo",
+      idCategoria: "ID_categoria",
+      idEstado: "ID_Estado",
+      descripcion: "descripcion",
     });
   });
-
-  
 });
-
-
-

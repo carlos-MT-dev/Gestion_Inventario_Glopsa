@@ -17,7 +17,7 @@ async function eliminarRegistro(id, tipo) {
   try {
     const [result] = await conn.query(query, [id]);
 
-    console.log("Resultado de query:", result);
+    // console.log("Resultado de query:", result);
 
     return result;
   } catch (err) {

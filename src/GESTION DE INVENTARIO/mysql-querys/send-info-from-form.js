@@ -54,7 +54,7 @@ async function insertarObjeto(data) {
 
   try {
     const [result] = await conn.query(sql, valores);
-    console.log(result);
+    // console.log(result);
     return result;
   } catch (err) {
     throw err;

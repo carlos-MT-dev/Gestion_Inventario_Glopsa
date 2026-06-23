@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const data = await res.json();
-      console.log("Respuesta servidor:", data);
+      // console.log("Respuesta servidor:", data);
 
       if (data.ok) {
         alert("Prestamo actualizado correctamente");

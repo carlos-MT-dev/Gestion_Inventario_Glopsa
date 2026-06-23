@@ -1,56 +1,75 @@
 const conn = require("../../conexion/conexion");
 
+const tablasPermitidas = [
+  "item",
+   "modelo", 
+   "marca"
+  ];
 
-//txt_nuevo_objeto: 'TRAPOS', agregar_categoria_objeto: '2'
-async function insertItem(data) {
-  const sql = `INSERT INTO item (Item , ID_categoria) VALUES (?,?)`;
+const cabeceraModelo = [
+  "modelo", 
+  "ID_Estado", 
+  "ID_categoria", 
+  "descripcion"
+];
 
-  try {
-    const [result] = await conn.query(sql, [
-      data.txt_nuevo_objeto,
-      data.agregar_categoria_objeto,
-    ]);
+const cabeceraMarca = [
+  "Marca", 
+  "ID_Estado", 
+  "ID_categoria", 
+  "descripcion"
+];
 
-    return result.insertId || null;
-  } catch (error) {
-    throw new Error(`Error al insertar item: ${error.message}`);
+const cabeceraItem = [
+  "Item", 
+  "ID_Estado", 
+  "ID_categoria", 
+  "descripcion"
+];
+
+async function validaTablas(tablaNameEntrante) {
+  return tablasPermitidas.includes(tablaNameEntrante);
+}
+
+async function enviarNuevosCampos(
+  tabla,
+  nombre,
+  categoria,
+  estado,
+  descripcion,
+) {
+  const tablaValida = await validaTablas(tabla);
+
+  if (!tablaValida) {
+    throw new Error("Tabla no permitida");
   }
-}
 
+  let cabecerasAux = "";
 
-async function insertMarca(data) {
-  const sql = `INSERT INTO marca (Marca, ID_categoria) VALUES (?,?)`;
-
-  try {
-    const [result] = await conn.query(sql, [
-      data.txt_nueva_marca,
-      data.agregar_categoria_marca,
-    ]);
-
-    return result.insertId || null;
-  } catch (error) {
-    throw new Error(`Error al insertar marca: ${error.message}`);
+  if (tabla === "modelo") {
+    cabecerasAux = cabeceraModelo.join(",");
+  } else if (tabla === "marca") {
+    cabecerasAux = cabeceraMarca.join(",");
+  } else if (tabla === "item") {
+    cabecerasAux = cabeceraItem.join(",");
   }
+
+  const sql = `
+    INSERT INTO ${tabla}
+    (${cabecerasAux})
+    VALUES (?,?,?,?)
+  `;
+
+  console.log(sql);
+
+  const [result] = await conn.query(sql, [
+    nombre,
+    estado,
+    categoria,
+    descripcion,
+  ]);
+
+  return result;
 }
 
-
-async function insertModelo(data) {
-  const sql = `INSERT INTO modelo (modelo, ID_categoria) VALUES (?,?)`;
-
-  try {
-    const [result] = await conn.query(sql, [
-      data.txt_nuevo_modelo,
-      data.agregar_categoria_modelo,
-    ]);
-    return result[0]?.id || null;
-  } catch (error) {
-    throw new Error(`Error al insertar modelo: ${error.message}`);
-  }
-}
-
-
-module.exports = {
-    insertItem,
-    insertMarca,
-    insertModelo
-}
+module.exports = { enviarNuevosCampos };

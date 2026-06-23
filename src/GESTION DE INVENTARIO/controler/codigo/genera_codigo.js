@@ -6,7 +6,7 @@ document.addEventListener("click", function (e) {
 
   const codigo = btn.dataset.codigo;
 
-  console.log("Código:", codigo);
+  // console.log("Código:", codigo);
 
   generarYDescargar(codigo);
 

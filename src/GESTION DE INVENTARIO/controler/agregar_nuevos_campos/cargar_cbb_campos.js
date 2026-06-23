@@ -6,26 +6,24 @@ async function cargarCombosParaAgregar() {
   try {
     const res = await fetch("/api/form");
     const data = await res.json();
-    // console.log(data.categoria)
-    //idSelect, lista, campo, id
-    llenarSelect(
-      "cbb_agregar_area_campos"
-      , data.area
-      , "Area"
-      , "ID_area"
-    );
+   
+ 
+
     llenarSelect(
       "cbb_agregar_categoria_campos",
       data.categoria,
       "categoria",
       "ID_categoria",
     );
+
     llenarSelect(
       "cbb_agregar_estado_campos",
       data.estadoObj,
       "estado",
       "ID_Estado",
     );
+
+    
   } catch (error) {
     console.error(
       "Error al cargar categorías para agregar nuevos campos:",

@@ -4,7 +4,7 @@ async function cargarCombos() {
   try {
     const res = await fetch("/api/form");
     const data = await res.json();
-    console.log("Datos para combos:", data);
+    // console.log("Datos para combos:", data);
     // CAMPOS EXACTOS SEGÚN TU API
     llenarSelectEspeciales("ID_area", data.area, "Area", "ID_area");
     llenarSelectEspeciales("ID_sede", data.sede, "Sede", "ID_sede");

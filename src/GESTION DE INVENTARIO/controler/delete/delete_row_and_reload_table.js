@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   btnDelete.addEventListener("click", async () => {
     const id = document.getElementById("ID_area").getAttribute("ID_objeto");
-    console.log("ID obtenido del DOM:", id, "Tipo:", typeof id);
+    // console.log("ID obtenido del DOM:", id, "Tipo:", typeof id);
 
     if (!id) {
       alert("Por favor, selecciona un objeto de la tabla primero.");

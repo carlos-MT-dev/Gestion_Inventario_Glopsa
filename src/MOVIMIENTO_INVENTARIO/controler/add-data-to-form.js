@@ -7,7 +7,7 @@ async function cargarCombos(){
         "/api/form/prestamo"
     )
     const data = await res.json();
-    console.log(data)
+    // console.log(data)
 //    llenarSelect(idSelect, lista, campo); 
 
     llenarSelect("ID_movimiento", data.movimiento, "movimiento");
