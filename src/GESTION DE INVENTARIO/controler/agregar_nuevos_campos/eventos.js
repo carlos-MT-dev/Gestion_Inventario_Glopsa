@@ -163,19 +163,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 
-/*
-MOSTRAR VENTANA DE REGISTROS DE CAMPOS
-
-Esta funcion redirige de la pestaña de registro de articulos ---> hacia la ventana de registro de nuevos datos de items (objetos, modelos, marcas) 
-*/ 
-
-document.addEventListener("DOMContentLoaded", () => {
-  const btnAgregarCampos = document.getElementById("btn_agregar_nuevos_campos");
-
-  btnAgregarCampos.addEventListener("click", () => {
-    window.location.href = "/agregar_nuevos_datos_pagina";
-  });
-});
 
 /*
 MOSTRAR VENTANA DE REGISTROS DE ARTICULOS U OBJETOS (PANTALLA PRINCIPAL DE REGISTRO)

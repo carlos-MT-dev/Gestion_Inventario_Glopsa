@@ -1,3 +1,88 @@
+/**
+ * --------------------------------------
+ * Este script reune todas las tareas automaticas que se añaden mediante tareas del DOM  
+ * 
+ */
+
+
+
+/*
+CARGAR DATA A LOS SELECT PARA REGISTRO DE NUEVOS CAMPOS
+
+Esta funcion liista los campos para los select correspondientes del formulario que hace el CRUD de mantenimiento de los nuevos campos
+*/
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  cargarCombosParaAgregar();
+});
+
+async function cargarCombosParaAgregar() {
+  try {
+    const res = await fetch("/api/form");
+    const data = await res.json();
+   
+ 
+
+    llenarSelect(
+      "cbb_agregar_categoria_campos",
+      data.categoria,
+      "categoria",
+      "ID_categoria",
+    );
+
+    llenarSelect(
+      "cbb_agregar_estado_campos",
+      data.estadoObj,
+      "estado",
+      "ID_Estado",
+    );
+
+    
+  } catch (error) {
+    console.error(
+      "Error al cargar categorías para agregar nuevos campos:",
+      error,
+    );
+  }
+}
+
+// ------------------------------
+// FUNCION GENÉRICA PARA LLENAR SELECT
+// ------------------------------
+
+// ("ID_area", data.area, "Area", "ID_area");
+function llenarSelect(idSelect, lista, campo, id) {
+  const select = document.getElementById(idSelect);
+
+  if (!select) {
+    console.warn(`Elemento #${idSelect} no encontrado`);
+    return;
+  }
+
+  // LIMPIAR SELECT
+  select.innerHTML = `<option value="">SELECCIONAR</option>`;
+
+  // Insertar las opciones
+  lista.forEach((item) => {
+    const opt = document.createElement("option");
+    let pos = 0;
+    opt.value = item[id];
+    opt.textContent = item[campo];
+    select.appendChild(opt);
+  });
+}
+
+
+
+
+/*
+LISTAR TABLA DE CAMPOS REGISTRADOS (marca, modelo, items)
+
+Esta funcion liista los campos(marca, modelo, items) registrados en la base de datos
+*/
+
+
 document.addEventListener("DOMContentLoaded", async () => {
   // ── Referencias al DOM ───────────────────────────────────────────────────
   const tabla = document.getElementById("tbody_tabla_lista_campos");
@@ -6,7 +91,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const btnModelo = document.getElementById("btn_modelo");
   const recuento = document.getElementById("recuento_res_num");
   const nombreCampoLista = document.getElementById("nombre_campo_listado");
-
 
   // ── Utilidades de renderizado ────────────────────────────────────────────
   const limpiarTabla = () => {
@@ -21,7 +105,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     nombreCampo,
     categoria,
     estado,
-    descripcion
+    descripcion,
   ) =>
     `<button
       class="btn_tabla btn_editar"
@@ -34,10 +118,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       📝 Editar
    </button>`;
 
-  const crearBotonEliminar = (
-    idCampo, 
-    tipoElemento
-  )=>
+  const crearBotonEliminar = (idCampo, tipoElemento) =>
     `<button 
       class="btn_tabla btn_eliminar"
       data-id="${idCampo}"
@@ -56,10 +137,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     tablaOrigen,
     idCategoria,
     idEstado,
-    descripcion
+    descripcion,
   }) => {
     limpiarTabla();
-   
 
     tabla.innerHTML = campoList
       .map(
@@ -74,13 +154,11 @@ document.addEventListener("DOMContentLoaded", async () => {
               elementCampo[colmNombre],
               elementCampo[idCategoria],
               elementCampo[idEstado],
-              elementCampo[descripcion]
+              elementCampo[descripcion],
             )}
             </td>
             <td>
-            ${crearBotonEliminar(
-              elementCampo[columId],
-              tablaOrigen)}
+            ${crearBotonEliminar(elementCampo[columId], tablaOrigen)}
             </td>
           </tr>
         `,
@@ -89,15 +167,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     recuento.textContent = campoList.length;
 
-  //valida la pluralidad
-    if (campoList.length ==1){
-       nombreCampoLista.textContent = tablaOrigen +" "+"registrada";
-    } else{
-      nombreCampoLista.textContent = tablaOrigen + "s" +" "+"resgistradas(os)";
+    //valida la pluralidad
+    if (campoList.length == 1) {
+      nombreCampoLista.textContent = tablaOrigen + " " + "registrada";
+    } else {
+      nombreCampoLista.textContent =
+        tablaOrigen + "s" + " " + "resgistradas(os)";
     }
   };
-// -------------------------------------------------------------------
-// variables que almacenan los resulatdos llegados de la API
+  // -------------------------------------------------------------------
+  // variables que almacenan los resulatdos llegados de la API
   let items = [];
   let marcas = [];
   let modelos = [];
@@ -109,17 +188,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       throw new Error(`Error HTTP: ${response.status}`);
     }
 
-    ({data: { items,  marcas, modelos }  } =await response.json());
-
-
+    ({
+      data: { items, marcas, modelos },
+    } = await response.json());
   } catch (error) {
     console.error("Error al cargar datos:", error);
 
     // renderizar por defecto los campos de objeto
   }
-
-
-
 
   renderizarTabla({
     campoList: items,
@@ -130,22 +206,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     tablaOrigen: "item",
     idCategoria: "ID_categoria",
     idEstado: "ID_Estado",
-    descripcion: "descripcion"
+    descripcion: "descripcion",
   });
 
   // ── Listeners de los botones de filtro ───────────────────────────────────
   btnObjeto.addEventListener("click", () => {
-     renderizarTabla({
-       campoList: items,
-       columId: "ID_item",
-       colmNombre: "Item",
-       columCategoria: "Categoria",
-       columEstado: "Estado",
-       tablaOrigen: "item",
-       idCategoria: "ID_categoria",
-       idEstado: "ID_Estado",
-       descripcion: "descripcion",
-     });
+    renderizarTabla({
+      campoList: items,
+      columId: "ID_item",
+      colmNombre: "Item",
+      columCategoria: "Categoria",
+      columEstado: "Estado",
+      tablaOrigen: "item",
+      idCategoria: "ID_categoria",
+      idEstado: "ID_Estado",
+      descripcion: "descripcion",
+    });
   });
 
   btnMarca.addEventListener("click", () => {

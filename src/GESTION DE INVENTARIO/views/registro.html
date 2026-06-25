@@ -8,17 +8,25 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Sora:wght@600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Sora:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Select2 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
 
     <!-- CSS Rediseñado -->
-    <link rel="stylesheet" href="/GESTION DE INVENTARIO/Style/registro-css.css" />
+    <link
+      rel="stylesheet"
+      href="/GESTION DE INVENTARIO/Style/registro-css.css"
+    />
   </head>
 
   <body>
-
     <!-- ═══════════════════════════════════
          NAVBAR
     ═══════════════════════════════════ -->
@@ -34,11 +42,21 @@
         </div>
 
         <ul class="nav-menu">
-          <li><a href="../../html_reenvio_pagina_no_encontrada.html">Dashboard</a></li>
+          <li>
+            <a href="../../html_reenvio_pagina_no_encontrada.html">Dashboard</a>
+          </li>
           <li class="active"><a href="#">Inventario</a></li>
-          <li><a href="../../MOVIMIENTO_INVENTARIO/view/prestamo.html">Préstamos</a></li>
-          <li><a href="../../html_reenvio_pagina_no_encontrada.html">Reportes</a></li>
-          <li><a href="../../html_reenvio_pagina_no_encontrada.html">Log Out</a></li>
+          <li>
+            <a href="../../MOVIMIENTO_INVENTARIO/view/prestamo.html"
+              >Préstamos</a
+            >
+          </li>
+          <li>
+            <a href="../../html_reenvio_pagina_no_encontrada.html">Reportes</a>
+          </li>
+          <li>
+            <a href="../../html_reenvio_pagina_no_encontrada.html">Log Out</a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -47,7 +65,6 @@
          CONTENEDOR PRINCIPAL
     ═══════════════════════════════════ -->
     <div class="container">
-
       <!-- HEADER -->
       <div class="header">
         <h1><span class="red">Registrar</span> Artículo</h1>
@@ -57,12 +74,16 @@
            FORMULARIO
       ═══════════════════════════════════ -->
       <form method="POST" id="form-registro" class="form">
-
         <!-- FILA 1: Identificación -->
         <div class="row">
           <div class="input-box">
             <label for="Codigo">Código</label>
-            <input id="Codigo" name="Codigo" type="text" placeholder="Auto-generado" />
+            <input
+              id="Codigo"
+              name="Codigo"
+              type="text"
+              placeholder="Auto-generado"
+            />
           </div>
 
           <div class="input-box">
@@ -72,7 +93,11 @@
 
           <div class="input-box">
             <label for="ID_categoria">Categoría</label>
-            <select id="ID_categoria" class="cbb-form" name="ID_categoria"></select>
+            <select
+              id="ID_categoria"
+              class="cbb-form"
+              name="ID_categoria"
+            ></select>
           </div>
 
           <div class="input-box">
@@ -100,7 +125,12 @@
 
           <div class="input-box">
             <label for="Unidad_txt">Unidades a registrar</label>
-            <input type="text" id="Unidad_txt" name="Unidad_txt" placeholder="0" />
+            <input
+              type="text"
+              id="Unidad_txt"
+              name="Unidad_txt"
+              placeholder="0"
+            />
           </div>
 
           <div class="input-box">
@@ -118,12 +148,20 @@
         <div class="row">
           <div class="input-box">
             <label for="ID_Disponibilidad">Disponibilidad</label>
-            <select id="ID_Disponibilidad" class="cbb-form" name="ID_Disponibilidad"></select>
+            <select
+              id="ID_Disponibilidad"
+              class="cbb-form"
+              name="ID_Disponibilidad"
+            ></select>
           </div>
 
           <div class="input-box">
             <label for="ID_Condicion">Condición</label>
-            <select id="ID_Condicion" class="cbb-form" name="ID_Condicion"></select>
+            <select
+              id="ID_Condicion"
+              class="cbb-form"
+              name="ID_Condicion"
+            ></select>
           </div>
 
           <div class="input-box">
@@ -133,12 +171,22 @@
 
           <div class="input-box">
             <label for="Fecha_Compra">Fecha de compra</label>
-            <input type="date" id="Fecha_Compra" name="Fecha_Compra" class="cbb-form" />
+            <input
+              type="date"
+              id="Fecha_Compra"
+              name="Fecha_Compra"
+              class="cbb-form"
+            />
           </div>
 
           <div class="input-box large">
             <label for="Descripcion">Descripción</label>
-            <input id="Descripcion" name="Descripcion" type="text" placeholder="Observaciones del artículo..." />
+            <input
+              id="Descripcion"
+              name="Descripcion"
+              type="text"
+              placeholder="Observaciones del artículo..."
+            />
           </div>
         </div>
 
@@ -167,11 +215,14 @@
             ✔ Registrar
           </button>
 
-          <button type="button" id="btn_agregar_nuevos_campos" class="btn agregar-campos">
+          <button
+            type="button"
+            id="btn_agregar_nuevos_campos"
+            class="btn agregar-campos"
+          >
             ⚙ Agregar campos
           </button>
         </div>
-
       </form>
 
       <!-- DIVISOR -->
@@ -208,31 +259,22 @@
         </thead>
         <tbody id="tbody-objetos"></tbody>
       </table>
-
     </div>
     <!-- /container -->
-
 
     <!-- ═══════════════════════════════════
          SCRIPTS (orden original preservado)
     ═══════════════════════════════════ -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-    <script src="/GESTION DE INVENTARIO/controler/select/select_row_and_fill_cbb.js"></script>
-    <script src="/GESTION DE INVENTARIO/controler/add_data_to_table.js"></script>
-    <script src="/GESTION DE INVENTARIO/controler/add_data_to_forms.js"></script>
-    <script src="/GESTION DE INVENTARIO/controler/send_data_form_bd.js"></script>
-    <script src="/GESTION DE INVENTARIO/controler/delete/delete_row_and_reload_table.js"></script>
-    <script src="/GESTION DE INVENTARIO/controler/reload/reload-page-on-click.js"></script>
-    <script src="/GESTION DE INVENTARIO/controler/update/update_row_from_db.js"></script>
-    <script src="/GESTION DE INVENTARIO/controler/mover/btn-mover.js"></script>
-    <script type="module" src="/GESTION DE INVENTARIO/controler/search/search_txtCod_data_to_table.js"></script>
-    <script type="module" src="/GESTION DE INVENTARIO/controler/codigo/genera_codigo.js"></script>
-    <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/mostrar_ventana_agregar_nuevoscampos.js"></script>
-    <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/btn_enviar_nuevos_datos.js"></script>
-    <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/cargar_categorias.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode/dist/JsBarcode.all.min.js"></script>
 
+
+    <script src="/GESTION DE INVENTARIO/controler/registro_inventario/api.js"></script>
+    <script type="module" src="/GESTION DE INVENTARIO/controler/registro_inventario/eventos.js"></script>
+
+    <script src="/GESTION DE INVENTARIO/controler/agregar_nuevos_campos/mostrar_ventana_agregar_nuevoscampos.js"></script>
+
+  
   </body>
 </html>
