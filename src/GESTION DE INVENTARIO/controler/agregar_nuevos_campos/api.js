@@ -115,7 +115,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       data-estado="${estado}"
       data-descripcion = "${descripcion}"
       data-accion="editar">
-      📝 Editar
+
+      <a
+       href = "#form_nuevos_campos"
+       style = "text-decoration: none;color: inherit;"
+        >📝 Editar</a>
+  
    </button>`;
 
   const crearBotonEliminar = (idCampo, tipoElemento) =>

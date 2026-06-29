@@ -46,6 +46,10 @@
   --transition: 0.18s ease;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* RESET */
 *, *::before, *::after {
   margin: 0;

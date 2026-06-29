@@ -46,7 +46,9 @@
 
   --sidebar-width: 220px;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 /* GOOGLE FONTS */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Sora:wght@600;700&display=swap');
 
@@ -253,17 +255,9 @@ body {
   flex-direction: column;
 }
 
-/* .tabla-container {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: auto;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  background: var(--surface-card);
-} */
 
 .tabla-container {
-  max-height: 450px; /* altura máxima */
+  max-height: 550px; /* altura máxima */
 
   overflow-y: auto;
   overflow-x: auto;

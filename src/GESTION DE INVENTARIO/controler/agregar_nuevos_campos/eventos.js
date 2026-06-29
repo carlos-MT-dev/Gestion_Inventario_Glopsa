@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /*
-ELIMINAR REGISTROS DE CAMPOS
+EDITAR Y/O ELIMINAR REGISTROS DE CAMPOS
 
 Esta funcion elimina datos de items (objetos, modelos, marcas) en la base de datos del sistema
 */ 
@@ -114,7 +114,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tabla = document.getElementById("tbody_tabla_lista_campos");
   const idCampo = document.getElementById("txt_id_campos");
   const nombreCampo = document.getElementById("txt_agregar_nombre_campos");
-
   const tablaCampo = document.getElementById("cbb_agregar_tabla_campos");
   const categoriaCampo = document.getElementById(
     "cbb_agregar_categoria_campos",
@@ -137,12 +136,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     const descripcion = boton.dataset.descripcion;
 
     if (accion === "editar") {
+
       idCampo.value = id;
       nombreCampo.value = nombre;
       tablaCampo.value;
       categoriaCampo.value = categoria;
       estadoCampo.value = estado;
       descripcionCampo.value = descripcion;
+   
+      
+
     } else if (accion === "eliminar") {
       const res = await fetch("/eliminar_nuevos_elementos", {
         method: "DELETE",
@@ -176,5 +179,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   btnretornar.addEventListener("click", () => {
     window.location.href = "/registro";
+  });
+});
+
+/*
+MOSTRAR VENTANA DE REGISTROS DE INFORME DE INVENTARIO
+
+Esta funcion redirige de la pestaña de registro de nuevos datos de items  ---> hacia la ventana de registro de registro de articulos
+*/ 
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn_reporte = document.getElementById("btn_reporte");
+
+  btn_reporte.addEventListener("click", () => {
+    window.location.href = "/informe_inventario";
   });
 });

@@ -16,7 +16,7 @@ async function cargarCombos() {
   try {
     const res = await fetch("/api/form");
     const data = await res.json();
-    // console.log("Datos para combos:", data);
+    
     // CAMPOS EXACTOS SEGÚN TU API
     llenarSelectEspeciales("ID_area", data.area, "Area", "ID_area");
     llenarSelectEspeciales("ID_sede", data.sede, "Sede", "ID_sede");
@@ -72,32 +72,7 @@ async function cargarCombos() {
 // ------------------------------
 
 // ("ID_area", data.area, "Area", "ID_area");
-function llenarSelect(idSelect, lista, campo, id) {
-  const select = document.getElementById(idSelect);
 
-  if (!select) {
-    console.warn(`Elemento #${idSelect} no encontrado`);
-    return;
-  }
-
-  // Limpiar
-  select.innerHTML = `<option value="">SELECCIONAR</option>`;
-
-  // Llenar opciones
-  lista.forEach((item) => {
-    const opt = document.createElement("option");
-    opt.value = item[id];
-    opt.textContent = item[campo];
-    select.appendChild(opt);
-  });
-
-  // 🔥 Inicializar Select2 UNA SOLA VEZ
-  $(`#${idSelect}`).select2({
-    placeholder: "Buscar...",
-    allowClear: true,
-    width: "100%",
-  });
-}
 
 //FUNCION LLENAR SELECT CAMPOS ESPECIALES
 function llenarSelectEspeciales(idSelect, lista, campo, id, categoria) {

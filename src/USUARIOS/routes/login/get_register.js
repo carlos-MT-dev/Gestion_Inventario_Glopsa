@@ -6,10 +6,10 @@ const router = express.Router();
 
 // Dashboard protegido
 router.get('/registro', (req, res) => {
-    res.sendFile(
+    res.render(
       path.join(
         __dirname,
-        "../../../GESTION DE INVENTARIO/views/registro.html",
+        "../../../GESTION DE INVENTARIO/views/registro.ejs",
       ),
     );
 });

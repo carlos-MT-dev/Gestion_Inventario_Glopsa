@@ -31,7 +31,6 @@ console.log("esta es la data que llega a la busqueda mutiple",data)
   o.ID_DisponibilidadObj,
   o.ID_CondicionObj,
   o.ID_seccion,
-
   m.modelo AS Modelo,
   o.fecha_registro,
   o.Fecha_compra,

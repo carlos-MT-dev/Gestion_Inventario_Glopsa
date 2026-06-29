@@ -2,7 +2,9 @@
 font-size: 24px;
 margin-bottom: 20px;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 
 .input-group {
 display: flex;

@@ -68,6 +68,9 @@ const actualizarNuevosCamposRoutes = require("./src/GESTION DE INVENTARIO/routes
 const ListarCampos = require("./src/GESTION DE INVENTARIO/routes/agregar_nuevos_campos/listar_campos"); 
 const AgregarNuevosCampos = require("./src/GESTION DE INVENTARIO/routes/get_agregar_nuevos_campos");
 const EliminarNuevosCampos = require("./src/GESTION DE INVENTARIO/routes/agregar_nuevos_campos/eliminar_nuevos_campos")
+const informeInventarioRoutes = require("./src/GESTION DE INVENTARIO/routes/informe_inventario/get_informe_inventario.js");
+const listaInventariototal = require("./src/GESTION DE INVENTARIO/routes/informe_inventario/lista_inventario_total.js");
+const buscarenelInformeInventario = require("./src/GESTION DE INVENTARIO/routes/informe_inventario/search_object_informe_inventario.js")
 
 // Inicio
 app.get("/", (req, res) => {
@@ -102,6 +105,9 @@ app.use(actualizarNuevosCamposRoutes);
 app.use(AgregarNuevosCampos);
 app.use(ListarCampos);  
 app.use(EliminarNuevosCampos);
+app.use(informeInventarioRoutes);
+app.use(listaInventariototal);
+app.use(buscarenelInformeInventario);
 /* ===========================================
    4. SERVIDOR
 =========================================== */

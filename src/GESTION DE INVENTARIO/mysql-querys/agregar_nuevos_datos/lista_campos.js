@@ -21,7 +21,7 @@ async function getListaNuevosItems() {
 
   try {
     const [result] = await conn.query(query);
-    console.log("Resultado de query:", result);
+    // console.log("Resultado de query:", result);
     return result;
   } catch (err) {
     console.error("Error en query get item:", err);
@@ -50,7 +50,7 @@ async function getListaNuevosMarca() {
 
   try {
     const [result] = await conn.query(query);
-    console.log("Resultado de query:", result);
+    // console.log("Resultado de query:", result);
     return result;
   } catch (err) {
     console.error("Error en query get marcas:", err);
@@ -79,7 +79,7 @@ async function getListaNuevosModelo() {
 
   try {
     const [result] = await conn.query(query);
-    console.log("Resultado de query:", result);
+    // console.log("Resultado de query:", result);
     return result;
   } catch (err) {
     console.error("Error en query get modelo:", err);

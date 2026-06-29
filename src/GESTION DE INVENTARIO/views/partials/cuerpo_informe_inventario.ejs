@@ -1,0 +1,127 @@
+<!-- ═══════════════════════════════════
+           CONTENIDO PRINCIPAL
+      ═══════════════════════════════════ -->
+<main class="content" id="contenedor_lista_informe">
+  <h1>Resumen de Inventario</h1>
+
+  <p class="subtitle">Lista actualizada de los todos los objeto registrados</p>
+
+  <!-- ──────────────────────────────
+            formulario de busqueda
+        ────────────────────────────── -->
+
+  <form
+    class="card form-card"
+    id="form_nuevos_campos"
+    method="POST"
+    action="/registrar_nuevos_datos"
+  >
+    <h2>Filtre su lista de inventario</h2>
+    <p>Use los filtros para obtener una informacion mas detallada</p>
+
+    <div class="form-row">
+      <div class="input-group">
+        <label for="categoria">Categoria</label>
+        <select
+          name="ID_categoria"
+          id="ID_categoria_informe_inventario"
+          class="cbb_agregar_nuevos_campos cbb"
+        ></select>
+      </div>
+ 
+      <div class="input-group">
+        <label for="categoria">Objeto</label>
+        <select
+          name="ID_objeto"
+          id="ID_objeto_informe_inventario"
+          class="cbb_agregar_nuevos_campos cbb"
+        ></select>
+      </div>
+
+      <div class="input-group">
+        <label for="categoria">Marca</label>
+        <select
+          name="ID_marca"
+          id="ID_marca_informe_inventario"
+          class="cbb_agregar_nuevos_campos cbb"
+        ></select>
+      </div>
+
+      <div class="input-group">
+        <label for="estado">Modelo</label>
+        <select
+          name="ID_modelo"
+          id="ID_modelo_informe_inventario"
+          class="cbb_agregar_nuevos_campos cbb"
+        ></select>
+      </div>
+
+      <div class="input-group">
+        <label for="estado">Sede</label>
+        <select
+          name="ID_sede"
+          id="ID_sede_informe_inventario"
+          class="cbb_agregar_nuevos_campos cbb"
+        ></select>
+      </div>
+
+      <div class="input-group">
+        <label for="estado">Condicion</label>
+        <select
+          id="ID_Condicion_informe_inventario"
+          name="ID_Condicion"
+          class="cbb_agregar_nuevos_campos cbb"
+        ></select>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button type="button" class="btn-primary" id="btn_buscar_informe_inventario">
+        <i class="fas fa-plus"></i>
+        Buscar
+      </button>
+
+      <button type="button" class="btn-primary" id="btn_actualizar_campo">
+        <i class="fas fa-rotate"></i>
+        Reporte
+      </button>
+
+   
+    </div>
+  </form>
+
+  <!-- ──────────────────────────────
+             TABLA DE CAMPOS
+        ────────────────────────────── -->
+  <section class="card card-tabla">
+    <h2>Listado de campos registrados</h2>
+
+    <div class="tabla-container">
+      <table class="Lista_campos"  >
+        <thead class="cabecera_tabla_lista_campos">
+          <tr>
+            <th>Id Objeto</th>
+            <th>Nombre del objeto</th>
+            <th>Numero de registros</th>
+             <th>Total</th>
+            <th>ver detalle</th>
+      
+          </tr>
+        </thead>
+
+        <tbody
+          class="tbody_tabla_lista_campos"
+          id="tbody_tabla_lista_inventario"
+        ></tbody>
+      </table>
+    </div>
+
+    <div class="footer-table">
+      <i class="fas fa-cube" id="recuento_res"></i>
+
+      Mostrando
+      <span id="recuento_res_num"></span>
+      <span id="nombre_campo_listado"></span>
+    </div>
+  </section>
+</main>

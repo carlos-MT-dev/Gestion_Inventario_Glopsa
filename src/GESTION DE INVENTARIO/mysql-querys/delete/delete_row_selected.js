@@ -6,7 +6,7 @@ async function eliminarFila(idObjeto) {
 
   try {
     const [result] = await conn.query(query, [idObjeto]);
-    console.log("Resultado de query:", result);
+    // console.log("Resultado de query:", result);
     return result;
   } catch (err) {
     console.error("Error en query DELETE:", err);
