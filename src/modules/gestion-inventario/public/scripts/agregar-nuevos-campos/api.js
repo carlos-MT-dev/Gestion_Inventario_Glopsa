@@ -116,7 +116,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     categoria,
     estado,
     descripcion,
+    tablaOrigen
   ) =>
+
     `<button
       class="btn_tabla btn_editar"
       data-id="${idCampo}"
@@ -124,6 +126,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       data-categoria="${categoria}"
       data-estado="${estado}"
       data-descripcion = "${descripcion}"
+      data-tablaOrigen = "${tablaOrigen}"
       data-accion="editar">
 
       <a
@@ -170,6 +173,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               elementCampo[idCategoria],
               elementCampo[idEstado],
               elementCampo[descripcion],
+              tablaOrigen,
             )}
             </td>
             <td>
@@ -212,17 +216,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     // renderizar por defecto los campos de objeto
   }
 
-  renderizarTabla({
-    campoList: items,
-    columId: "ID_item",
-    colmNombre: "Item",
-    columCategoria: "Categoria",
-    columEstado: "Estado",
-    tablaOrigen: "item",
-    idCategoria: "ID_categoria",
-    idEstado: "ID_Estado",
-    descripcion: "descripcion",
-  });
+
+        renderizarTabla({
+          campoList: items,
+          columId: "ID_item",
+          colmNombre: "Item",
+          columCategoria: "Categoria",
+          columEstado: "Estado",
+          tablaOrigen: "item",
+          idCategoria: "ID_categoria",
+          idEstado: "ID_Estado",
+          descripcion: "descripcion",
+        });
 
   // ── Listeners de los botones de filtro ───────────────────────────────────
   btnObjeto.addEventListener("click", () => {

@@ -3,14 +3,11 @@
  * Este script reune todos los eventos añadidos al DOM
  */
 
-
-
 /*
 ACTUALIZAR LOS REGISTROS DE LOS CAMPOS
 
 Esta funcion actualiza los datos de los registros previos de items (objetos, modelos, marcas) realizados a la base de datos del sistema
-*/ 
-
+*/
 
 document.addEventListener("DOMContentLoaded", () => {
   const btn_actualizar_campo = document.getElementById("btn_actualizar_campo");
@@ -53,13 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 /*
 ENVIAR LOS REGISTROS DE LOS CAMPOS
 
 Esta funcion envia  datos de nuevos registros  de items (objetos, modelos, marcas) hacia la base de datos del sistema
-*/ 
-
+*/
 
 document.addEventListener("DOMContentLoaded", () => {
   const btn_agregar_campos = document.getElementById("btn_agregar_campos");
@@ -102,18 +97,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 /*
 EDITAR Y/O ELIMINAR REGISTROS DE CAMPOS
 
 Esta funcion elimina datos de items (objetos, modelos, marcas) en la base de datos del sistema
-*/ 
-
+*/
 
 document.addEventListener("DOMContentLoaded", async () => {
+
   const tabla = document.getElementById("tbody_tabla_lista_campos");
   const idCampo = document.getElementById("txt_id_campos");
   const nombreCampo = document.getElementById("txt_agregar_nombre_campos");
+
   const tablaCampo = document.getElementById("cbb_agregar_tabla_campos");
   const categoriaCampo = document.getElementById(
     "cbb_agregar_categoria_campos",
@@ -121,6 +116,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const estadoCampo = document.getElementById("cbb_agregar_estado_campos");
   const descripcionCampo = document.getElementById("txt_descripcion_campos");
 
+  // Quitamos el parámetro 'e' que no existe, solo dejamos 'event'
   tabla.addEventListener("click", async (event) => {
     const boton = event.target.closest("[data-accion]");
 
@@ -130,37 +126,57 @@ document.addEventListener("DOMContentLoaded", async () => {
     const id = boton.dataset.id;
     const tipo = boton.dataset.tipo;
     const nombre = boton.dataset.nombre;
-    const nomTabla = boton.dataset.tabla;
+    const nomTabla = boton.dataset.tablaorigen;
     const categoria = boton.dataset.categoria;
     const estado = boton.dataset.estado;
     const descripcion = boton.dataset.descripcion;
 
     if (accion === "editar") {
-
       idCampo.value = id;
       nombreCampo.value = nombre;
-      tablaCampo.value;
-      categoriaCampo.value = categoria;
-      estadoCampo.value = estado;
-      descripcionCampo.value = descripcion;
-   
-      
 
-    } else if (accion === "eliminar") {
-      const res = await fetch("/eliminar_nuevos_elementos", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          tipo,
-          id,
-        }),
-      });
-
-      if (res.ok) {
-        location.reload();
+      if (tablaCampo) {
+        console.log("si esta el cbb");
+        $("#cbb_agregar_tabla_campos").val(nomTabla).trigger("change");
+      } else {
+        console.log("no esta el cbb listar tabla");
       }
+      $("#cbb_agregar_categoria_campos").val(categoria).trigger("change");
+      $("#cbb_agregar_estado_campos").val(estado).trigger("change");
+
+      descripcionCampo.value = descripcion;
+    } else if (accion === "eliminar") {
+      // 1. Usamos 'event' que es el objeto real del click para prevenir comportamientos raros
+      if (event) event.preventDefault();
+
+      // 2. Corregido a 'window.confirm'
+      const usuarioConfirma = window.confirm(
+        "¿Estás seguro que deseas eliminar este campo?",
+      );
+
+      if (usuarioConfirma) {
+        try {
+          const res = await fetch("/eliminar_nuevos_elementos", {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              tipo,
+              id,
+            }),
+          });
+
+          if (res.ok) {
+            location.reload(); // Solo recarga si el servidor respondió OK
+          } else {
+            alert("No se pudo eliminar el campo correctamente.");
+          }
+        } catch (error) {
+          console.error("A wrong happened: " + error);
+        }
+      }
+  
     }
   });
 });
@@ -171,8 +187,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 MOSTRAR VENTANA DE REGISTROS DE ARTICULOS U OBJETOS (PANTALLA PRINCIPAL DE REGISTRO)
 
 Esta funcion redirige de la pestaña de registro de nuevos datos de items  ---> hacia la ventana de registro de registro de articulos
-*/ 
-
+*/
 
 document.addEventListener("DOMContentLoaded", () => {
   const btnretornar = document.getElementById("btn_retornar_registro");
@@ -186,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
 MOSTRAR VENTANA DE REGISTROS DE INFORME DE INVENTARIO
 
 Esta funcion redirige de la pestaña de registro de nuevos datos de items  ---> hacia la ventana de registro de registro de articulos
-*/ 
+*/
 
 document.addEventListener("DOMContentLoaded", () => {
   const btn_reporte = document.getElementById("btn_reporte");

@@ -104,19 +104,15 @@ document.addEventListener("DOMContentLoaded", () => {
  * BUSCA EN LA LISTA DE INFORME DE INVENTARIO POR MULTIPLES FILTROS
  */
 document.addEventListener("DOMContentLoaded", () => {
-  const btnBuscarInformeInventario = document.getElementById(
-    "btn_buscar_informe_inventario",
-  );
-  const cbbCategoria = document.getElementById(
-    "ID_categoria_informe_inventario",
-  );
+
+
+  const btnBuscarInformeInventario = document.getElementById("btn_buscar_informe_inventario",);
+  const cbbCategoria = document.getElementById("ID_categoria_informe_inventario",);
   const cbbObjeto = document.getElementById("ID_objeto_informe_inventario");
   const cbbMarca = document.getElementById("ID_marca_informe_inventario");
   const cbbModelo = document.getElementById("ID_modelo_informe_inventario");
   const cbbSede = document.getElementById("ID_sede_informe_inventario");
-  const cbbCondicion = document.getElementById(
-    "ID_Condicion_informe_inventario",
-  );
+  const cbbCondicion = document.getElementById("ID_Condicion_informe_inventario",);
 
   if (!btnBuscarInformeInventario) return;
 
@@ -150,16 +146,99 @@ document.addEventListener("DOMContentLoaded", () => {
       // ASIGNAMOS los nuevos datos de la búsqueda a tu variable global
       campoList = Array.isArray(data.data) ? data.data : data;
 
-
-      
       renderizarTabla({
-        idObjetivo: "idItem", 
-        nombreObjeto: "nombreObjeto", 
+        idObjetivo: "idItem",
+        nombreObjeto: "nombreObjeto",
         cantidadRegistro: "cantidadRegistros",
         stock: "stockTotal",
       });
     } catch (err) {
       console.error(err);
     }
+  });
+});
+
+/**
+ * 
+ * CREAR UN EXCEL DE INVENTARIO
+ */
+
+
+
+const crearWorkbookDesdeDatos = async (data) => {
+  const workbook = new ExcelJS.Workbook();
+  workbook.creator = "Sistema Glopsa";
+  workbook.created = new Date();
+
+  const sheet = workbook.addWorksheet("Inventario");
+
+  sheet.columns = [
+    { header: "Id Objeto", key: "idItem", width: 15 },
+    { header: "Nombre del objeto", key: "nombreObjeto", width: 35 },
+    { header: "Numero de registros", key: "cantidadRegistros", width: 20 },
+    { header: "Total", key: "stockTotal", width: 15 },
+  ];
+
+  data.forEach((item) => {
+    sheet.addRow({
+      idItem: item.idItem,
+      nombreObjeto: item.nombreObjeto,
+      cantidadRegistros: item.cantidadRegistros,
+      stockTotal: item.stockTotal,
+    });
+  });
+
+  sheet.getRow(1).font = { bold: true };
+  sheet.eachRow({ includeEmpty: false }, (row) => {
+    row.alignment = { vertical: "middle", horizontal: "left" };
+  });
+
+  return workbook;
+};
+
+const descargarExcelDesdeDatos = async (data) => {
+  try {
+    const workbook = await crearWorkbookDesdeDatos(data);
+    const buffer = await workbook.xlsx.writeBuffer();
+    const blob = new Blob([buffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "reporte_inventario.xlsx";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error("Error generando el archivo Excel:", error);
+  }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const btn_generar_reporte = document.getElementById("btn_generar_reporte");
+
+  if (!btn_generar_reporte) return;
+
+  btn_generar_reporte.addEventListener("click", async () => {
+    if (!Array.isArray(campoList) || campoList.length === 0) {
+      try {
+        const response = await fetch("/listar_inventario_total");
+
+        if (!response.ok) {
+          throw new Error(`Error HTTP: ${response.status}`);
+        }
+
+        const json = await response.json();
+        campoList = Array.isArray(json.data) ? json.data : [];
+      } catch (error) {
+        console.error("Error al cargar datos para el reporte:", error);
+        return;
+      }
+    }
+
+    await descargarExcelDesdeDatos(campoList);
   });
 });
