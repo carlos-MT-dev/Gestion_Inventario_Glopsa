@@ -150,10 +150,15 @@ async function moverCodigoId(btn) {
 
  */
 
-
-document.getElementById("btn-reset").addEventListener("click", () => {
-  document.getElementById("form-registro").reset();
-});
+const btnReset = document.getElementById("btn-reset");
+if (btnReset) {
+  btnReset.addEventListener("click", () => {
+    const formRegistro = document.getElementById("form-registro");
+    if (formRegistro) {
+      formRegistro.reset();
+    }
+  });
+}
 
 
 /**
@@ -286,7 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("este es el resultado de la busqueda multiple:", data);
 
       listarTabla(data, "tbody-objetos");
-      
+
     } catch (err) {
       console.error(err);
     }

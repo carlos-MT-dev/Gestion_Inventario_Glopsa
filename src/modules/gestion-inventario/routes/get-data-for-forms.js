@@ -15,7 +15,8 @@ router.get("/api/form", async (req, res) => {
       estadoObj: await selectInfoForm.getEstadoObjList(),
       disponibilidad: await selectInfoForm.getDisponibilidadList(),
       condicion: await selectInfoForm.getCondicionList(),
-      seccion: await selectInfoForm.getSeccionList()
+      seccion: await selectInfoForm.getSeccionList(),
+      tabla: await selectInfoForm.getTablaList(),
     };
 
     res.json(data);

@@ -1,10 +1,8 @@
 /**
  * --------------------------------------
- * Este script reune todas las tareas automaticas que se añaden mediante tareas del DOM  
- * 
+ * Este script reune todas las tareas automaticas que se añaden mediante tareas del DOM
+ *
  */
-
-
 
 /*
 CARGAR DATA A LOS SELECT PARA REGISTRO DE NUEVOS CAMPOS
@@ -12,18 +10,14 @@ CARGAR DATA A LOS SELECT PARA REGISTRO DE NUEVOS CAMPOS
 Esta funcion liista los campos para los select correspondientes del formulario que hace el CRUD de mantenimiento de los nuevos campos
 */
 
-
 document.addEventListener("DOMContentLoaded", () => {
   cargarCombosParaAgregar();
- 
 });
 
 async function cargarCombosParaAgregar() {
   try {
     const res = await fetch("/api/form");
     const data = await res.json();
-   
- 
 
     llenarSelectEspeciales(
       "cbb_agregar_categoria_campos",
@@ -37,11 +31,21 @@ async function cargarCombosParaAgregar() {
       "cbb_agregar_estado_campos",
       data.estadoObj,
       "estado",
-      "ID_Estado",
-      "ID_categoria",
+      "ID_Estado"
     );
 
-    
+    /**
+     * Para este caso en espcifico, se usa el campo "tabla" dos veces
+     * dado que para el caso de este cbb, tanto el contenido de los selec
+     * como el value deben ser lo mismo para que asi no rompa la consulta sql
+     */
+    llenarSelectEspeciales(
+      "cbb_agregar_tabla_campos",
+      data.tabla,
+      "tabla",
+      "tabla",
+      "auxiliar_artificio",
+    );
   } catch (error) {
     console.error(
       "Error al cargar categorías para agregar nuevos campos:",
@@ -49,7 +53,6 @@ async function cargarCombosParaAgregar() {
     );
   }
 }
-
 
 //FUNCION LLENAR SELECT CAMPOS ESPECIALES
 function llenarSelectEspeciales(idSelect, lista, campo, id, categoria) {
@@ -67,16 +70,16 @@ function llenarSelectEspeciales(idSelect, lista, campo, id, categoria) {
   lista.forEach((item) => {
     const opt = document.createElement("option");
     opt.value = item[id];
-    opt.textContent = item[campo];
+    opt.textContent = item[campo].toLowerCase();
 
-    if (item[categoria]) {
+    if (categoria && item[categoria]) {
       opt.setAttribute("data-categoria", item[categoria]);
     }
 
     select.appendChild(opt);
   });
 
-  //  Inicializar Select2 
+  //  Inicializar Select2
   $(`#${idSelect}`).select2({
     placeholder: "Buscar...",
     allowClear: true,
@@ -84,17 +87,11 @@ function llenarSelectEspeciales(idSelect, lista, campo, id, categoria) {
   });
 }
 
-
-
-
-
-
 /*
 LISTAR TABLA DE CAMPOS REGISTRADOS (marca, modelo, items)
 
 Esta funcion liista los campos(marca, modelo, items) registrados en la base de datos
 */
-
 
 document.addEventListener("DOMContentLoaded", async () => {
   // ── Referencias al DOM ───────────────────────────────────────────────────

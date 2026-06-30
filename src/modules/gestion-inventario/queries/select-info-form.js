@@ -53,6 +53,13 @@ async function getSeccionList() {
   const [rows] = await conn.query(`SELECT ID_seccion, Seccion FROM seccion`);
   return rows;
 }
+// TABLAS
+async function getTablaList() {
+  const [rows] = await conn.query(`SELECT ID_tabla, tabla FROM tabla`);
+  return rows;
+}
+
+
 module.exports = {
   getAreaList,
   getSedeList,
@@ -63,6 +70,7 @@ module.exports = {
   getMedidaList,
   getEstadoObjList,
   getDisponibilidadList,
-  getCondicionList
-  ,getSeccionList
+  getCondicionList,
+  getSeccionList,
+  getTablaList,
 };
