@@ -37,51 +37,70 @@ function noCache(req, res, next) {
   next();
 }
 
-// archivos públicos
-app.use(express.static(path.join(__dirname, "src")));
+// archivos públicos (solo las carpetas "public" de cada módulo, nunca routes/queries/conexion)
+app.use(
+  "/modules/gestion-inventario/public",
+  express.static(path.join(__dirname, "src/modules/gestion-inventario/public")),
+);
+app.use(
+  "/modules/movimiento-inventario/public",
+  express.static(path.join(__dirname, "src/modules/movimiento-inventario/public")),
+);
+app.use(
+  "/modules/usuarios/public",
+  express.static(path.join(__dirname, "src/modules/usuarios/public")),
+);
+app.use(
+  "/shared/public",
+   express.static(path.join(__dirname, "src/shared/public")));
 
 /* ===========================================
    3. RUTAS
 =========================================== */
 
-const getLoginRoutes = require("./src/USUARIOS/routes/login/get_login");
-const getAuthenticateLoginRoutes = require("./src/USUARIOS/routes/login/get_authenticate");
-const validateSession = require("./src/GESTION DE INVENTARIO/middlewares/session");
-const getdashboard = require("./src/GESTION DE INVENTARIO/routes/get_dashboard");
-const getRegister = require("./src/USUARIOS/routes/login/get_register");
-const getPrestamos = require("./src/MOVIMIENTO_INVENTARIO/routes/get_prestamo")
-const getLogout = require("./src/USUARIOS/routes/login/get_logout");
-const getDataForTable = require("./src/GESTION DE INVENTARIO/routes/get_data_for_table");
-const getDataForForms = require("./src/GESTION DE INVENTARIO/routes/get_data_for_forms");
-const postDataObjetoBD = require("./src/GESTION DE INVENTARIO/routes/post_data_objeto_bd");
-const deleteObjectFromBD = require("./src/GESTION DE INVENTARIO/routes/delete/delete_object_from_bd");
-const updateObjectFromBD = require("./src/GESTION DE INVENTARIO/routes/update/update_object_from_bd");
-const buscarEquipo = require("./src/GESTION DE INVENTARIO/routes/search/search_object_from_bd");
-const getDataForFormsMovimiento = require("./src/MOVIMIENTO_INVENTARIO/routes/get_data_for_forms")
-const postDataPrestamoBD = require("./src/MOVIMIENTO_INVENTARIO/routes/post_data_prestamo_bd");
-const getDataForTablePrestamo = require("./src/MOVIMIENTO_INVENTARIO/routes/get_data_for_table")
-const deleteItemPrestamo = require("./src/MOVIMIENTO_INVENTARIO/routes/delete/delete-prestamo");
-const actualizarPrestamo = require("./src/MOVIMIENTO_INVENTARIO/routes/actualizar/actualizar-data");
-const buscarPrestamo =  require("./src/MOVIMIENTO_INVENTARIO/routes/search/search_prestamo")
-const agregarNuevosCamposRoutes = require("./src/GESTION DE INVENTARIO/routes/agregar_nuevos_campos/agregar_nuevos_campos")
-const actualizarNuevosCamposRoutes = require("./src/GESTION DE INVENTARIO/routes/agregar_nuevos_campos/actualizar_nuevos_campos")
-const ListarCampos = require("./src/GESTION DE INVENTARIO/routes/agregar_nuevos_campos/listar_campos"); 
-const AgregarNuevosCampos = require("./src/GESTION DE INVENTARIO/routes/get_agregar_nuevos_campos");
-const EliminarNuevosCampos = require("./src/GESTION DE INVENTARIO/routes/agregar_nuevos_campos/eliminar_nuevos_campos")
-const informeInventarioRoutes = require("./src/GESTION DE INVENTARIO/routes/informe_inventario/get_informe_inventario.js");
-const listaInventariototal = require("./src/GESTION DE INVENTARIO/routes/informe_inventario/lista_inventario_total.js");
-const buscarenelInformeInventario = require("./src/GESTION DE INVENTARIO/routes/informe_inventario/search_object_informe_inventario.js")
+const getLoginRoutes = require("./src/modules/usuarios/routes/login/get-login");
+const getAuthenticateLoginRoutes = require("./src/modules/usuarios/routes/login/get-authenticate");
+const validateSession = require("./src/shared/middlewares/session");
+const getdashboard = require("./src/modules/gestion-inventario/routes/get-dashboard");
+const getRegister = require("./src/modules/usuarios/routes/login/get-register");
+const getPrestamos = require("./src/modules/movimiento-inventario/routes/get-prestamo");
+const getLogout = require("./src/modules/usuarios/routes/login/get-logout");
+const getDataForTable = require("./src/modules/gestion-inventario/routes/get-data-for-table");
+const getDataForForms = require("./src/modules/gestion-inventario/routes/get-data-for-forms");
+const postDataObjetoBD = require("./src/modules/gestion-inventario/routes/post-data-objeto-bd");
+const deleteObjectFromBD = require("./src/modules/gestion-inventario/routes/delete/delete-object-from-bd");
+const updateObjectFromBD = require("./src/modules/gestion-inventario/routes/update/update-object-from-bd");
+const buscarEquipo = require("./src/modules/gestion-inventario/routes/search/search-object-from-bd");
+const getDataForFormsMovimiento = require("./src/modules/movimiento-inventario/routes/get-data-for-forms");
+const postDataPrestamoBD = require("./src/modules/movimiento-inventario/routes/post-data-prestamo-bd");
+const getDataForTablePrestamo = require("./src/modules/movimiento-inventario/routes/get-data-for-table");
+const deleteItemPrestamo = require("./src/modules/movimiento-inventario/routes/delete/delete-prestamo");
+const actualizarPrestamo = require("./src/modules/movimiento-inventario/routes/actualizar/actualizar-data");
+const buscarPrestamo = require("./src/modules/movimiento-inventario/routes/search/search-prestamo");
+const agregarNuevosCamposRoutes = require("./src/modules/gestion-inventario/routes/agregar-nuevos-campos/agregar-nuevos-campos");
+const actualizarNuevosCamposRoutes = require("./src/modules/gestion-inventario/routes/agregar-nuevos-campos/actualizar-nuevos-campos");
+const ListarCampos = require("./src/modules/gestion-inventario/routes/agregar-nuevos-campos/listar-campos");
+const AgregarNuevosCampos = require("./src/modules/gestion-inventario/routes/get-agregar-nuevos-campos");
+const EliminarNuevosCampos = require("./src/modules/gestion-inventario/routes/agregar-nuevos-campos/eliminar-nuevos-campos");
+const informeInventarioRoutes = require("./src/modules/gestion-inventario/routes/informe-inventario/get-informe-inventario.js");
+const listaInventariototal = require("./src/modules/gestion-inventario/routes/informe-inventario/lista-inventario-total.js");
+const buscarenelInformeInventario = require("./src/modules/gestion-inventario/routes/informe-inventario/search-object-informe-inventario.js");
 
 // Inicio
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "src/USUARIOS/view/index.html"));
+  res.sendFile(path.join(__dirname, "src/modules/usuarios/views/index.html"));
+});
+
+// Página de mantenimiento / no encontrada
+app.get("/pagina-no-encontrada", (req, res) => {
+  res.sendFile(path.join(__dirname, "src/shared/views/pagina-no-encontrada.html"));
 });
 
 // Rutas públicas
 app.use(getLoginRoutes);
 app.use(getAuthenticateLoginRoutes);
 
-//  Rutas protegidas 
+//  Rutas protegidas
 app.use(noCache, validateSession);
 // app.use(getdashboard);
 app.use(getRegister);
@@ -95,7 +114,6 @@ app.use(updateObjectFromBD);
 app.use(getDataForFormsMovimiento);
 app.use(postDataPrestamoBD);
 app.use(buscarEquipo);
-app.use(postDataPrestamoBD);
 app.use(getDataForTablePrestamo);
 app.use(deleteItemPrestamo);
 app.use(actualizarPrestamo);
@@ -103,7 +121,7 @@ app.use(buscarPrestamo);
 app.use(agregarNuevosCamposRoutes);
 app.use(actualizarNuevosCamposRoutes);
 app.use(AgregarNuevosCampos);
-app.use(ListarCampos);  
+app.use(ListarCampos);
 app.use(EliminarNuevosCampos);
 app.use(informeInventarioRoutes);
 app.use(listaInventariototal);
@@ -112,5 +130,5 @@ app.use(buscarenelInformeInventario);
    4. SERVIDOR
 =========================================== */
 app.listen(app.get("port"), "0.0.0.0", () => {
-  console.log("Server running on http://lcoalhost:" + app.get("port"));
+  console.log("Server running on http://localhost:" + app.get("port"));
 });

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GLOPSA - Pagina en Mantenimiento</title>
+    <link rel="stylesheet" href="/shared/public/styles/pagina-no-encontrada.css">
+  </head>
+  <body>
+    <div class="container_comunicado">
+      <div  class="container_pos_comunicado">
+          <h1 class="titulo_comunicado">
+            <span class="comunicado_pagina_mantenimiento_1">¡Disculpa las molestias!</span>
+            <br>
+            <span class="comunicado_pagina_mantenimiento_2">estamos trabajando para mejorar tu experiencia.</span> 
+          </h1>
+          <video class="video_comunicado_pag_no_found" src="/shared/public/assets/error-de-codificacion.mp4" autoplay muted loop playsinline></video>
+
+          <div class="div_boton_volver_atras">
+            <button id = "boton_volver_atras" class="boton_volver_atras"> <span class="flecha">←</span>  volver atrás</button>
+          </div>
+      </div>
+    </div>
+
+    <script>
+       const btnVolverAtras = document.getElementById("boton_volver_atras");
+       btnVolverAtras.addEventListener("click", ()=>{
+        window.history.back();
+       })
+
+    </script>
+
+  </body>
+</html>
+
+
